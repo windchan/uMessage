@@ -26,8 +26,7 @@ public class NGramToNextChoicesMap {
      * Increments the count of word after the particular NGram ngram.
      */
     public void seenWordAfterNGram(NGram ngram, String word) {
-        int count = this.map.find(ngram).find(new AlphabeticString(word));
-        this.map.find(ngram).insert(new AlphabeticString(word), count + 1);
+        throw new NotYetImplementedException();
     }
 
     /**
@@ -39,17 +38,8 @@ public class NGramToNextChoicesMap {
      * 
      * @return An array of all the Items for the requested ngram.
      */
-    @SuppressWarnings("unchecked")
     public Item<String, Integer>[] getCountsAfter(NGram ngram) {
-        Item<String, Integer>[] itArr = (Item<String, Integer>[])new Object[this.map.find(ngram).size()];
-        int index = 0;
-        for (Item<AlphabeticString, Integer> it : this.map.find(ngram)) {
-            String newKey = it.key.toString();
-            Item<String, Integer> newIt = new Item<String, Integer>(newKey, it.value);
-            itArr[index] = newIt;
-            index++;
-        }
-        return itArr;
+        throw new NotYetImplementedException();
     }
 
     public String[] getWordsAfter(NGram ngram, int k) {
