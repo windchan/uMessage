@@ -26,8 +26,10 @@ public class NGramToNextChoicesMap {
      * Increments the count of word after the particular NGram ngram.
      */
     public void seenWordAfterNGram(NGram ngram, String word) {
-        int count = this.map.find(ngram).find(new AlphabeticString(word));
-        this.map.find(ngram).insert(new AlphabeticString(word), count + 1);
+        if (this.map.find(ngram) != null) {
+            int count = this.map.find(ngram).find(new AlphabeticString(word));
+            this.map.find(ngram).insert(new AlphabeticString(word), count + 1);
+        }
     }
 
     /**
@@ -41,15 +43,18 @@ public class NGramToNextChoicesMap {
      */
     @SuppressWarnings("unchecked")
     public Item<String, Integer>[] getCountsAfter(NGram ngram) {
-        Item<String, Integer>[] itArr = (Item<String, Integer>[])new Object[this.map.find(ngram).size()];
-        int index = 0;
-        for (Item<AlphabeticString, Integer> it : this.map.find(ngram)) {
-            String newKey = it.key.toString();
-            Item<String, Integer> newIt = new Item<String, Integer>(newKey, it.value);
-            itArr[index] = newIt;
-            index++;
+        if (this.map.find(ngram) != null) {
+            Item<String, Integer>[] itArr = (Item<String, Integer>[])new Object[this.map.find(ngram).size()];
+            int index = 0;
+            for (Item<AlphabeticString, Integer> it : this.map.find(ngram)) {
+                String newKey = it.key.toString();
+                Item<String, Integer> newIt = new Item<String, Integer>(newKey, it.value);
+                itArr[index] = newIt;
+                index++;
+            }
+            return itArr;
         }
-        return itArr;
+        return (Item<String, Integer>[])(new Object[0]);
     }
 
     public String[] getWordsAfter(NGram ngram, int k) {
