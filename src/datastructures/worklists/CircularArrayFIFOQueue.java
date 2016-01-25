@@ -171,6 +171,12 @@ public class CircularArrayFIFOQueue<E extends Comparable<E>> extends FixedSizeFI
                 return equals;
             }
         }
-        return 0;
+        if (size1 == size2) {
+            return 0;
+        } else if (size1 > size2) {
+            return 1;
+        } else {
+            return -1;
+        }
     }
 }
