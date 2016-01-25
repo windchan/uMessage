@@ -6,7 +6,7 @@ import java.util.Map;
 import java.util.Map.Entry;
 
 import cse332.exceptions.NotYetImplementedException;
-import cse332.interfaces.trie.BString;
+import cse332.interfaces.misc.BString;
 import cse332.interfaces.trie.TrieMap;
 
 /**
@@ -15,7 +15,7 @@ import cse332.interfaces.trie.TrieMap;
  * for method specifications.
  */
 
-public class HashTrieMap<A, K extends BString<A>, V> extends TrieMap<A, K, V> {
+public class HashTrieMap<A extends Comparable<A>, K extends BString<A>, V> extends TrieMap<A, K, V> {
     public class HashTrieNode extends TrieNode<Map<A, HashTrieNode>, HashTrieNode> {
         public HashTrieNode() {
             this(null);

@@ -8,7 +8,7 @@ import cse332.interfaces.worklists.FixedSizeFIFOWorkList;
  * See cse332/interfaces/worklists/FixedSizeLIFOWorkList.java
  * for method specifications.
  */
-public class CircularArrayFIFOQueue<E> extends FixedSizeFIFOWorkList<E> {
+public class CircularArrayFIFOQueue<E extends Comparable<E>> extends FixedSizeFIFOWorkList<E> {
 	private E[] arr;
 	private int size;
 	private int front;
@@ -135,7 +135,7 @@ public class CircularArrayFIFOQueue<E> extends FixedSizeFIFOWorkList<E> {
     @Override
     public void clear() {
     	@SuppressWarnings("unchecked")
-    	E[] newArr = (E[])new Object[super.capacity()];
+    	E[] newArr = (E[])new Comparable[super.capacity()];
     	arr = newArr;
         size = 0;
         front = 0;
@@ -166,7 +166,10 @@ public class CircularArrayFIFOQueue<E> extends FixedSizeFIFOWorkList<E> {
         int size2 = other.size();
         int bound = Math.min(size1, size2);
         for (int i = 0; i < bound; i++) {
-            //TODO unimplemented
+            int equals = peek(i).compareTo(other.peek(i));
+            if (equals != 0) {
+                return equals;
+            }
         }
         return 0;
     }
