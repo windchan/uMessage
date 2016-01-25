@@ -145,6 +145,9 @@ public class CircularArrayFIFOQueue<E> extends FixedSizeFIFOWorkList<E> {
     @Override
     @SuppressWarnings("unchecked")
     public boolean equals(Object other) {
+        if (!(other instanceof CircularArrayFIFOQueue<?>)) {
+            return false;
+        }
         CircularArrayFIFOQueue<E> newOther = (CircularArrayFIFOQueue<E>)other;
         if (size() != newOther.size()) {
             return false;
@@ -158,8 +161,13 @@ public class CircularArrayFIFOQueue<E> extends FixedSizeFIFOWorkList<E> {
     }
 
     @Override
-    public int compareTo(FixedSizeFIFOWorkList<E> arg0) {
-        // TODO Auto-generated method stub
+    public int compareTo(FixedSizeFIFOWorkList<E> other) {
+        int size1 = size();
+        int size2 = other.size();
+        int bound = Math.min(size1, size2);
+        for (int i = 0; i < bound; i++) {
+            //TODO unimplemented
+        }
         return 0;
     }
 }
