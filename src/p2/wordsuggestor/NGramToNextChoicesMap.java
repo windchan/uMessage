@@ -28,6 +28,8 @@ public class NGramToNextChoicesMap {
     public void seenWordAfterNGram(NGram ngram, String word) {
         if (this.map.find(ngram) == null) {
             this.map.insert(ngram, newInner.get());
+        }
+        if (this.map.find(ngram).find(new AlphabeticString(word)) ==  null) {
             this.map.find(ngram).insert(new AlphabeticString(word), 0);
         }
         int count = this.map.find(ngram).find(new AlphabeticString(word));
