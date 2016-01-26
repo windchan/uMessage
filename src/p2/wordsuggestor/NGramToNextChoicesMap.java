@@ -48,6 +48,7 @@ public class NGramToNextChoicesMap {
     @SuppressWarnings("unchecked")
     public Item<String, Integer>[] getCountsAfter(NGram ngram) {
         if (this.map.find(ngram) != null) {
+            System.out.println(this.map.find(ngram).size());
             Item<String, Integer>[] itArr = (Item<String, Integer>[])new Item[this.map.find(ngram).size()];
             int index = 0;
             for (Item<AlphabeticString, Integer> it : this.map.find(ngram)) {

@@ -52,7 +52,9 @@ public class HashTrieMap<A extends Comparable<A>, K extends BString<A>, V> exten
         }
     	V previous = curr.value;
     	curr.value = value;
-    	this.size++;
+    	if (previous == null) {
+    	    this.size++;
+    	}
     	return previous;
     }
 
