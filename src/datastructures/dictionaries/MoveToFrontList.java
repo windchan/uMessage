@@ -27,37 +27,19 @@ public class MoveToFrontList<K, V> extends DeletelessDictionary<K, V> {
         if (key == null || value == null) {
             throw new IllegalArgumentException();
         }
-//        V oldValue = find(key);
-//        if (oldValue != null) {
-//            
-//        } else {
-//            if (front == null) {
-//                front = new ItemNode(key, value);
-//            } else {
-//                ItemNode newNode = new ItemNode(key, value);
-//                newNode.next = front;
-//                front = newNode;
-//            }
-//        }
-        V ret = null;
-        ItemNode prev = new ItemNode(null, null);
-        prev.next = front;
-        ItemNode curr = front;
-        while (curr != null) {
-            if (curr.key.equals(key)) {
-                ret = curr.value;
-                prev.next = curr.next;
-                curr.next = front;
-                front.value = value;
-                break;
+        V oldValue = find(key);
+        if (oldValue != null) {
+            front.value = value;
+        } else {
+            if (front == null) {
+                front = new ItemNode(key, value);
+            } else {
+                ItemNode newNode = new ItemNode(key, value);
+                newNode.next = front;
+                front = newNode;
             }
-            prev = curr;
-            curr = curr.next;
         }
-        if (front == null) {
-            front = new ItemNode(key, value);
-        }
-        return ret;
+        return oldValue;
     }
 
     @Override
@@ -75,6 +57,7 @@ public class MoveToFrontList<K, V> extends DeletelessDictionary<K, V> {
                 prev.next = curr.next;
                 curr.next = front;
                 front = curr;
+                break;
             }
             prev = curr;
             curr = curr.next;
