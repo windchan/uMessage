@@ -72,7 +72,6 @@ public class AVLTree<K extends Comparable<K>, V> extends BinarySearchTree<K, V> 
     // Basically equivalent to BST private find
     @SuppressWarnings("unchecked")
     private AVLNode insert(AVLNode current, K key, V value) {
-        //TODO situation where value is null
         if (current != null) {
             int direction = Integer.signum(key.compareTo(current.key));
             if (direction == 0) {
@@ -85,7 +84,7 @@ public class AVLTree<K extends Comparable<K>, V> extends BinarySearchTree<K, V> 
                     ret = insert(current.getAVLChildren(child), key, value);
                 } else {
                     current.children[child] = new AVLNode(key, null, 0);
-                    ret = current;
+                    ret = current.getAVLChildren(child);
                 }
                 
                 int leftHeight = (current.children[0] == null) ? -1 : current.getAVLChildren(0).getHeight();
