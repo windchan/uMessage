@@ -56,37 +56,59 @@ public class AVLTree<K extends Comparable<K>, V> extends BinarySearchTree<K, V> 
     public AVLTree() {
         super();
     }
+    
     @Override
     public V insert(K key, V value) {
-        insert((AVLNode)root, key, value);
-        
+        if (key == null || value == null) {
+            throw new IllegalArgumentException();
+        }
+        AVLNode current = insert((AVLNode)root, key, value);
+        V oldValue = current.value;
+        current.value = value;
+        return oldValue;
         
     }
     
-    private void insert(AVLNode current, K key, V value) {
+    // Basically equivalent to BST private find
+    private AVLNode insert(AVLNode current, K key, V value) {
+        //TODO situation where value is null
         if (current != null) {
             int direction = Integer.signum(key.compareTo(current.key));
             if (direction == 0) {
-                current.value = value;
+                return current;
             } else {
+                // This is the situation where we modify the structure of the tree.
                 int child = Integer.signum(direction + 1);
+                AVLNode ret;
                 if (current.getAVLChildren(child) != null) {
-                    insert(current.getAVLChildren(child), key, value);
-                    
+                    ret = insert(current.getAVLChildren(child), key, value);
                 } else {
-                    current.children[child] = new AVLNode(key, value, 0);
-                    current.setHeight(Math.max(current.getAVLChildren(0).getHeight(), 
-                          current.getAVLChildren(1).getHeight()) + 1);
+                    current.children[child] = new AVLNode(key, null, 0);
+                    ret = current;
                 }
+                current.setHeight(Math.max(current.getAVLChildren(0).getHeight(), 
+                        current.getAVLChildren(1).getHeight()) + 1);
+                
+                if (!checkStruc(current)) {
+                    rotate();
+                }
+                return ret;
             }
         } else {
-            current = new AVLNode(key, value, 0);
+            // add to root.
+            current = new AVLNode(key, null, 0);
+            return current;
         }
     }
     
+    private boolean checkStruc(AVLNode node) {
+        int leftHeight = (node.children[0] == null) ? -1 : node.getAVLChildren(0).getHeight();
+        int rightHeight = (node.children[1] == null) ? -1 : node.getAVLChildren(1).getHeight();
+        return (Math.abs(leftHeight - rightHeight) <= 1);
+    }
+    
     @SuppressWarnings("unchecked")
-
-    private rotate() {
+    private void rotate() {
         
     }
 }
