@@ -70,6 +70,7 @@ public class AVLTree<K extends Comparable<K>, V> extends BinarySearchTree<K, V> 
     }
     
     // Basically equivalent to BST private find
+    @SuppressWarnings("unchecked")
     private AVLNode insert(AVLNode current, K key, V value) {
         //TODO situation where value is null
         if (current != null) {
@@ -97,6 +98,7 @@ public class AVLTree<K extends Comparable<K>, V> extends BinarySearchTree<K, V> 
         } else {
             // add to root.
             root = new AVLNode(key, null, 0);
+            current = (AVLNode)root;
             return current;
         }
     }
