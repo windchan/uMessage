@@ -49,7 +49,7 @@ public class BinarySearchTree<K extends Comparable<K>, V>
         }
     }
 
-    private BSTNode find(K key, V value) {
+    public BSTNode find(K key, V value) {
         BSTNode prev = null;
         BSTNode current = this.root;
 

@@ -1,12 +1,13 @@
 package datastructures.dictionaries;
 
 import cse332.datastructures.trees.BinarySearchTree;
+import cse332.datastructures.trees.BinarySearchTree.BSTNode;
 
 /**
  * TODO: Replace this comment with your own as appropriate.
  *
  * AVLTree must be a subclass of BinarySearchTree<E> and must use
- * inheritance and callst o superclass methods to avoid unnecessary
+ * inheritance and calls to superclass methods to avoid unnecessary
  * duplication or copying of functionality.
  *
  * 1. Create a subclass of BSTNode, perhaps named AVLNode.
@@ -30,4 +31,62 @@ import cse332.datastructures.trees.BinarySearchTree;
 
 public class AVLTree<K extends Comparable<K>, V> extends BinarySearchTree<K, V>  {
     // TODO: Implement me!
+    
+    public class AVLNode extends BSTNode {
+        private int height;
+        
+        public int getHeight() {
+            return this.height;
+        }
+
+        public void setHeight(int height) {
+            this.height = height;
+        }
+
+        public AVLNode(K key, V value, int height) {
+            super(key, value);
+            this.height = height;
+        }
+        
+        public AVLNode getAVLChildren(int child) {
+            return (AVLNode) children[child];
+        }
+    }
+    
+    public AVLTree() {
+        super();
+    }
+    @Override
+    public V insert(K key, V value) {
+        insert((AVLNode)root, key, value);
+        
+        
+    }
+    
+    private void insert(AVLNode current, K key, V value) {
+        if (current != null) {
+            int direction = Integer.signum(key.compareTo(current.key));
+            if (direction == 0) {
+                current.value = value;
+            } else {
+                int child = Integer.signum(direction + 1);
+                if (current.getAVLChildren(child) != null) {
+                    insert(current.getAVLChildren(child), key, value);
+                    
+                } else {
+                    current.children[child] = new AVLNode(key, value, 0);
+                    current.setHeight(Math.max(current.getAVLChildren(0).getHeight(), 
+                          current.getAVLChildren(1).getHeight()) + 1);
+                }
+            }
+        } else {
+            current = new AVLNode(key, value, 0);
+        }
+    }
+    
+    @SuppressWarnings("unchecked")
+
+    private rotate() {
+        
+    }
 }
