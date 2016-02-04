@@ -87,10 +87,12 @@ public class AVLTree<K extends Comparable<K>, V> extends BinarySearchTree<K, V> 
                     current.children[child] = new AVLNode(key, null, 0);
                     ret = current;
                 }
-                current.setHeight(Math.max(current.getAVLChildren(0).getHeight(), 
-                        current.getAVLChildren(1).getHeight()) + 1);
                 
-                if (!checkStruc(current)) {
+                int leftHeight = (current.children[0] == null) ? -1 : current.getAVLChildren(0).getHeight();
+                int rightHeight = (current.children[1] == null) ? -1 : current.getAVLChildren(1).getHeight();
+                current.setHeight(Math.max(leftHeight, leftHeight) + 1);
+                
+                if (!(Math.abs(leftHeight - rightHeight) <= 1)) {
                     rotate();
                 }
                 return ret;
@@ -101,12 +103,6 @@ public class AVLTree<K extends Comparable<K>, V> extends BinarySearchTree<K, V> 
             current = (AVLNode)root;
             return current;
         }
-    }
-    
-    private boolean checkStruc(AVLNode node) {
-        int leftHeight = (node.children[0] == null) ? -1 : node.getAVLChildren(0).getHeight();
-        int rightHeight = (node.children[1] == null) ? -1 : node.getAVLChildren(1).getHeight();
-        return (Math.abs(leftHeight - rightHeight) <= 1);
     }
     
     @SuppressWarnings("unchecked")
