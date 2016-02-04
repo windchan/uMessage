@@ -96,7 +96,7 @@ public class AVLTree<K extends Comparable<K>, V> extends BinarySearchTree<K, V> 
             }
         } else {
             // add to root.
-            current = new AVLNode(key, null, 0);
+            root = new AVLNode(key, null, 0);
             return current;
         }
     }
