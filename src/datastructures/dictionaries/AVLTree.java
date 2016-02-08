@@ -26,7 +26,6 @@ import cse332.datastructures.trees.BinarySearchTree.BSTNode;
  */
 
 public class AVLTree<K extends Comparable<K>, V> extends BinarySearchTree<K, V> {
-    // TODO: Implement me!
 
     public class AVLNode extends BSTNode {
         private int height;
@@ -60,9 +59,8 @@ public class AVLTree<K extends Comparable<K>, V> extends BinarySearchTree<K, V> 
             throw new IllegalArgumentException();
         }
         V oldValue = find(key);
-        insert((AVLNode) root, key, value);
+        this.root = insert((AVLNode) root, key, value);
         return oldValue;
-
     }
 
     // Basically equivalent to BST private find
@@ -85,19 +83,15 @@ public class AVLTree<K extends Comparable<K>, V> extends BinarySearchTree<K, V> 
                     current.children[child] = new AVLNode(key, value, 0);
                 }
 
-                int leftHeight = (current.children[0] == null) ? -1
-                        : current.getAVLChildren(0).getHeight();
-                int rightHeight = (current.children[1] == null) ? -1
-                        : current.getAVLChildren(1).getHeight();
-                current.setHeight(Math.max(leftHeight, rightHeight) + 1);
+                updateHeight(current);
 
-                if (leftHeight >= rightHeight + 2) {
+                if (heightDiff(current) >= 2) {
                     if (heightDiff(current.getAVLChildren(0)) < 0) {
                         current.children[0] = rotate(current.getAVLChildren(0), 1);
                     }
                     return rotate(current, 0);
                 }
-                else if (rightHeight >= leftHeight + 2) {
+                else if (heightDiff(current) <= -2) {
                     if (heightDiff(current.getAVLChildren(1)) > 0) {
                         current.children[1] = rotate(current.getAVLChildren(1), 0);
                     }
@@ -125,13 +119,13 @@ public class AVLTree<K extends Comparable<K>, V> extends BinarySearchTree<K, V> 
         updateHeight(parent);
         updateHeight(temp);
 
-        if (this.root == parent) {
-            this.root = temp;
-        }
+//        if (this.root == parent) {
+//            this.root = temp;
+//        }
         return temp;
     }
 
-    public void updateHeight(AVLNode current) {
+    private void updateHeight(AVLNode current) {
         int leftHeight = (current.children[0] == null) ? -1
                 : current.getAVLChildren(0).getHeight();
         int rightHeight = (current.children[1] == null) ? -1
@@ -139,7 +133,7 @@ public class AVLTree<K extends Comparable<K>, V> extends BinarySearchTree<K, V> 
         current.setHeight(Math.max(leftHeight, rightHeight) + 1);
     }
 
-    public int heightDiff(AVLNode current) {
+    private int heightDiff(AVLNode current) {
         if (current == null) {
             return -1;
         }
