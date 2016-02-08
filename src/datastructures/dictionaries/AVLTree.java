@@ -59,9 +59,8 @@ public class AVLTree<K extends Comparable<K>, V> extends BinarySearchTree<K, V> 
         if (key == null || value == null) {
             throw new IllegalArgumentException();
         }
-        AVLNode current = insert((AVLNode) root, key, value);
-        V oldValue = current.value;
-        current.value = value;
+        V oldValue = find(key);
+        insert((AVLNode) root, key, value);
         return oldValue;
 
     }
@@ -72,6 +71,7 @@ public class AVLTree<K extends Comparable<K>, V> extends BinarySearchTree<K, V> 
         if (current != null) {
             int direction = Integer.signum(key.compareTo(current.key));
             if (direction == 0) {
+                current.value = value;
                 return current;
             }
             else {
@@ -80,10 +80,9 @@ public class AVLTree<K extends Comparable<K>, V> extends BinarySearchTree<K, V> 
                 int child = Integer.signum(direction + 1);
                 AVLNode ret;
                 if (current.getAVLChildren(child) != null) {
-                    ret = insert(current.getAVLChildren(child), key, value);
+                    current.children[child] = insert(current.getAVLChildren(child), key, value);
                 } else {
-                    current.children[child] = new AVLNode(key, null, 0);
-                    ret = current.getAVLChildren(child);
+                    current.children[child] = new AVLNode(key, value, 0);
                 }
 
                 int leftHeight = (current.children[0] == null) ? -1
@@ -104,12 +103,12 @@ public class AVLTree<K extends Comparable<K>, V> extends BinarySearchTree<K, V> 
                     }
                     return rotate(current, 1);
                 }
-                return ret;
+                return current;
             }
         }
         else {
             // add to root.
-            root = new AVLNode(key, null, 0);
+            root = new AVLNode(key, value, 0);
             current = (AVLNode) root;
             return current;
         }
