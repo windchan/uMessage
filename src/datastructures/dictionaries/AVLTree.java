@@ -81,6 +81,7 @@ public class AVLTree<K extends Comparable<K>, V> extends BinarySearchTree<K, V> 
                     current.children[child] = insert(current.getAVLChildren(child), key, value);
                 } else {
                     current.children[child] = new AVLNode(key, value, 0);
+                    size++;
                 }
 
                 updateHeight(current);
@@ -104,6 +105,7 @@ public class AVLTree<K extends Comparable<K>, V> extends BinarySearchTree<K, V> 
             // add to root.
             root = new AVLNode(key, value, 0);
             current = (AVLNode) root;
+            size++;
             return current;
         }
     }
