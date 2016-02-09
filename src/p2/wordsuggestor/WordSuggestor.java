@@ -67,11 +67,17 @@ public class WordSuggestor {
             allWords.add(reader.next());
         }
 
-        String[] words = new String[allWords.size()];
+        String[] words = new String[N];
         int i = words.length - 1;
         while (i >= 0 && allWords.hasWork()) {
             words[i] = allWords.next();
             i--;
+        }
+       
+        for (i = 0; i < words.length; i++) {
+            if (words[i] == null) {
+                words[i] = "NULL";
+            }
         }
 
         return new NGram(words);
