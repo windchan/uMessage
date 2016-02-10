@@ -30,18 +30,18 @@ public class ChainingHashTable<K, V> extends DeletelessDictionary<K, V> {
     public ChainingHashTable(Supplier<Dictionary<K, V>> newChain) {
         this.newChain = newChain;
         primeIndex = 0;
-        table = (Dictionary<K, V>[])(new Object[PRIMES[primeIndex]]);
+        table = new Dictionary[PRIMES[primeIndex]];
     }
 
     @Override
     public V insert(K key, V value) {
-        int index = key.hashCode();
+        int index = key.hashCode() % table.length;
         if (table[index] == null) {
             table[index] = newChain.get();
         }
         V oldValue = table[index].find(key);
         table[index].insert(key, value);
-        if (size >= table.length) {
+        if (size >= table.length) {   
             rehash();
         }
         return oldValue;
@@ -49,17 +49,22 @@ public class ChainingHashTable<K, V> extends DeletelessDictionary<K, V> {
 
     @Override
     public V find(K key) {
-        int index = key.hashCode();
-        if (table[index] == null)
+        int index = key.hashCode() % table.length;
+        if (table[index] == null) {
             return null;
+        }
         return table[index].find(key);
     }
 
     @Override
     public Iterator<Item<K, V>> iterator() {
+        Set<Item<K, V>> newSet = new HashSet<Item<K, V>>();
         throw new NotYetImplementedException();
     }
     
+    private class ChainingHashTableIterator() {
+        
+    }
     private void rehash() {
         
     }
