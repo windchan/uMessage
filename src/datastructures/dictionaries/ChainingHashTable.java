@@ -22,23 +22,45 @@ import cse332.interfaces.misc.Dictionary;
  */
 public class ChainingHashTable<K, V> extends DeletelessDictionary<K, V> {
     private Supplier<Dictionary<K, V>> newChain;  
+    private Dictionary<K, V>[] table;
+    private int primeIndex;
+    private final static int[] PRIMES = {101, 211, 409, 821, 1657, 3299, 6599, 12163, 24391, 48821, 97073, 202309};
 
+    @SuppressWarnings("unchecked")
     public ChainingHashTable(Supplier<Dictionary<K, V>> newChain) {
         this.newChain = newChain;
+        primeIndex = 0;
+        table = (Dictionary<K, V>[])(new Object[PRIMES[primeIndex]]);
     }
 
     @Override
     public V insert(K key, V value) {
-        throw new NotYetImplementedException();
+        int index = key.hashCode();
+        if (table[index] == null) {
+            table[index] = newChain.get();
+        }
+        V oldValue = table[index].find(key);
+        table[index].insert(key, value);
+        if (size >= table.length) {
+            rehash();
+        }
+        return oldValue;
     }
 
     @Override
     public V find(K key) {
-        throw new NotYetImplementedException();
+        int index = key.hashCode();
+        if (table[index] == null)
+            return null;
+        return table[index].find(key);
     }
 
     @Override
     public Iterator<Item<K, V>> iterator() {
         throw new NotYetImplementedException();
+    }
+    
+    private void rehash() {
+        
     }
 }
