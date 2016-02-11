@@ -17,7 +17,6 @@ public class CircularArrayFIFOQueue<E extends Comparable<E>> extends FixedSizeFI
     public CircularArrayFIFOQueue(int capacity) {
         super(capacity);
         clear();
-        
     }
 
     /**
@@ -158,6 +157,17 @@ public class CircularArrayFIFOQueue<E extends Comparable<E>> extends FixedSizeFI
             }
         }
         return true;
+    }
+
+    @Override
+    public int hashCode() {
+        int code = 17;
+        int i = 0;
+        for (E e : this) {
+            code += e.hashCode() * Math.pow(31, i);
+            i++;
+        }
+        return code;
     }
 
     @Override

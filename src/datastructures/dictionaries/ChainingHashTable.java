@@ -7,6 +7,10 @@ import cse332.datastructures.containers.*;
 import cse332.exceptions.NotYetImplementedException;
 import cse332.interfaces.misc.DeletelessDictionary;
 import cse332.interfaces.misc.Dictionary;
+import cse332.interfaces.misc.SimpleIterator;
+import cse332.interfaces.worklists.WorkList;
+import datastructures.worklists.ListFIFOQueue;
+import jdk.internal.org.objectweb.asm.tree.IntInsnNode;
 
 /**
  * TODO: Replace this comment with your own as appropriate.
@@ -40,8 +44,12 @@ public class ChainingHashTable<K, V> extends DeletelessDictionary<K, V> {
             table[index] = newChain.get();
         }
         V oldValue = table[index].find(key);
+        if (oldValue == null) {
+            size++;
+        }
         table[index].insert(key, value);
-        if (size >= table.length) {   
+        if (size >= table.length) {  
+            primeIndex++;
             rehash();
         }
         return oldValue;
@@ -58,14 +66,50 @@ public class ChainingHashTable<K, V> extends DeletelessDictionary<K, V> {
 
     @Override
     public Iterator<Item<K, V>> iterator() {
-        Set<Item<K, V>> newSet = new HashSet<Item<K, V>>();
-        throw new NotYetImplementedException();
+        return new ChainingHashTableIterator();
     }
     
-    private class ChainingHashTableIterator() {
+    private class ChainingHashTableIterator extends SimpleIterator<Item<K, V>> {
+        private WorkList<Item<K, V>> list;
+        
+        public ChainingHashTableIterator() {
+            initialize();
+        }
+
+        @Override
+        public Item<K, V> next() {
+            return list.next();
+        }
+
+        @Override
+        public boolean hasNext() {
+            // TODO Auto-generated method stub
+            return !(list.size() == 0);
+        }
+        
+        private void initialize() {
+            list = new ListFIFOQueue<Item<K, V>>();
+            for (int i = 0; i < table.length; i++) {
+                Dictionary<K, V> dic = table[i];
+                if (dic != null) {
+                    for (Item<K, V> it : dic) {
+                        list.add(it);
+                    }
+                }
+            }
+        }
         
     }
     private void rehash() {
+        Dictionary<K, V>[] newTable = new Dictionary[PRIMES[primeIndex]];
+        for (Item<K, V> it : this) {
+            int index = it.key.hashCode() % newTable.length;
+            if (newTable[index] == null) {
+                newTable[index] = newChain.get();
+            }
+            newTable[index].insert(it.key, it.value);
+        }
+        table = newTable;
         
     }
 }
