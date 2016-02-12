@@ -4,9 +4,12 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
 import java.util.Map.Entry;
+import java.util.function.Supplier;
+
 
 import cse332.exceptions.NotYetImplementedException;
 import cse332.interfaces.misc.BString;
+import cse332.interfaces.misc.Dictionary;
 import cse332.interfaces.trie.TrieMap;
 
 /**
@@ -16,19 +19,20 @@ import cse332.interfaces.trie.TrieMap;
  */
 
 public class HashTrieMap<A extends Comparable<A>, K extends BString<A>, V> extends TrieMap<A, K, V> {
-    public class HashTrieNode extends TrieNode<Map<A, HashTrieNode>, HashTrieNode> {
+    public class HashTrieNode extends TrieNode<Dictionary<A, HashTrieNode>, HashTrieNode> {
         public HashTrieNode() {
             this(null);
         }
 
         public HashTrieNode(V value) {
-            this.pointers = new HashMap<A, HashTrieNode>();
+            Supplier<Dictionary<K, V>> newChain = () -> new MoveToFrontList<K, V>();
+            this.pointers = new ChainingHashTable(newChain);
             this.value = value;
         }
 
         @Override
         public Iterator<Entry<A, HashTrieMap<A, K, V>.HashTrieNode>> iterator() {
-            return pointers.entrySet().iterator();
+            return pointers.iterator();
         }
     }
 

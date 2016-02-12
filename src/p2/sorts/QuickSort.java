@@ -17,12 +17,15 @@ public class QuickSort {
     
     private static <E> void sort(E[] array, int lo, int hi, Comparator<E> comparator) { 
         if(lo < hi) {
-            int i = lo;
+            
+            int i = findMedian(array, lo, hi - 1, lo + (hi - 1 - lo) / 2, comparator);
             int front = lo + 1;
             int end = hi;
-            E element = array[i];
+            swap(array, lo, i);
+            E pivot = array[lo];
+            i = lo;
             while(front <= end) {
-                if(comparator.compare(array[front], element) >= 0) {
+                if(comparator.compare(array[front], pivot) >= 0) {
                     swap(array, front, end);
                     end--;
                 } else {
@@ -36,6 +39,20 @@ public class QuickSort {
         }       
     }
     
+    private static <E> int findMedian(E[] arr, int a, int b, int c, Comparator<E> comparator) {
+        if(checkMedian(arr[a], arr[b], arr[c], comparator)) {
+            return b;
+        } else if (checkMedian(arr[b], arr[a], arr[c], comparator)) {
+            return a;
+        } else {
+            return c;
+        }
+    }
+    
+    private static <E> boolean checkMedian(E a, E b, E c, Comparator<E> comparator) {
+        return (comparator.compare(a, b) < 0 && comparator.compare(b, c) < 0) ||
+        (comparator.compare(c, b) < 0 && comparator.compare(b, a) < 0);
+    }
     private static <E> void swap(E[] array, int a, int b) {
         E temp = array[a];
         array[a] = array[b];
