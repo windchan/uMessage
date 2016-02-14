@@ -14,6 +14,7 @@ import cse332.interfaces.misc.BString;
 import cse332.interfaces.misc.Dictionary;
 import cse332.interfaces.trie.TrieMap;
 import cse332.interfaces.worklists.WorkList;
+import datastructures.dictionaries.MoveToFrontList;
 import datastructures.worklists.ListFIFOQueue;
 
 /**
@@ -29,7 +30,7 @@ public class HashTrieMap<A extends Comparable<A>, K extends BString<A>, V> exten
         }
 
         public HashTrieNode(V value) {
-            Supplier<Dictionary<A, HashTrieNode>> newChain = () -> new MoveToFrontList();
+            Supplier<Dictionary<A, HashTrieNode>> newChain = () -> new MoveToFrontList<>();
             this.pointers = new ChainingHashTable(newChain);
             this.value = value;
         }
