@@ -35,7 +35,7 @@ public class NGramTester_avl_bst {
     public static void main(String[] args) {
         try {
             long startTime = System.currentTimeMillis();
-            WordSuggestor suggestions = new WordSuggestor("sorted_dic.txt", 2, -1,
+            WordSuggestor suggestions = new WordSuggestor("sorted_dic_large.txt", 2, -1,
                     NGramTester_avl_bst.bstConstructor(),
                     NGramTester_avl_bst.bstConstructor());
 //            suggestions.toString();
