@@ -1,4 +1,4 @@
-package p2.clients;
+package experiment;
 
 import java.io.IOException;
 import java.util.function.Supplier;
