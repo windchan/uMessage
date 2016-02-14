@@ -40,7 +40,7 @@ Throughout p1 and p2, you have written (or used) several distinct implementation
 ### BST vs. AVLTree ###
 Construct input files to NGramTester of your choosing to demonstrate that an AVL Tree is asymptotically better
 than a Binary Search Tree.
-<pre>TODO</pre>
+<pre>bst: 81533</pre>
 
 ### BST Worst Case vs. BST Best Case ###
 We know that the worst case for a BST insertion is O(n) and the best case is O(lg n).  Construct input
