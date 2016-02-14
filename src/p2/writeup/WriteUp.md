@@ -3,19 +3,19 @@
 
 ## Project Enjoyment ##
 - How Was Your Partnership?
-  <pre>TODO</pre>
+  <pre>It was great because we both contributed to the project a lot. Sometimes we find that by working together, we can improve our efficiency and accuracy.</pre>
   
 - What was your favorite part of the project?
-  <pre>TODO</pre>
+  <pre>Implement AVLTree because it was the hardest part of the project and requires a lot of clear thinking. Specifically, before we implement rotation, we couldn't imagine such a complex operation can be easily described in code. However, we were able to successfully break the big problem in parts and gradually finished implementation of rotation.</pre>
 
 - What was your least favorite part of the project?
-  <pre>TODO</pre>
+  <pre>Trying to figure out how generics work. Because it was confusing at first and even after it worked, it was still kind of unclear to me why it worked.</pre>
 
 - How could the project be improved?
-  <pre>TODO</pre>
+  <pre>Maybe we could do a brief intro to denerics during lecture or section because that could possibly save us a lot of time and solve some uncertainties for us.</pre>
 
 - Did you enjoy the project?
-  <pre>TODO</pre>
+  <pre>Overall yes, because it was cool to see uMessage working. Besides, it was amazing that we actually implemented all of the important data structures for this real application.</pre>
     
 -----
 
