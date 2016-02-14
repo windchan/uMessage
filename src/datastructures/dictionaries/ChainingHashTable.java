@@ -38,7 +38,8 @@ public class ChainingHashTable<K, V> extends DeletelessDictionary<K, V> {
 
     @Override
     public V insert(K key, V value) {
-        int index = key.hashCode() % table.length;
+        int index = Math.abs(key.hashCode() % table.length);
+        //int index = key.hashCode() < 0 ? key.hashCode() % table.length + table.length : key.hashCode() % table.length;
         if (table[index] == null) {
             table[index] = newChain.get();
         }
@@ -56,7 +57,8 @@ public class ChainingHashTable<K, V> extends DeletelessDictionary<K, V> {
 
     @Override
     public V find(K key) {
-        int index = key.hashCode() % table.length;
+        int index = Math.abs(key.hashCode() % table.length);
+        //int index = key.hashCode() < 0 ? key.hashCode() % table.length + table.length : key.hashCode() % table.length;
         if (table[index] == null) {
             return null;
         }
@@ -102,7 +104,7 @@ public class ChainingHashTable<K, V> extends DeletelessDictionary<K, V> {
     private void rehash() {
         Dictionary<K, V>[] newTable = new Dictionary[PRIMES[primeIndex]];
         for (Item<K, V> it : this) {
-            int index = it.key.hashCode() % newTable.length;
+            int index = Math.abs(it.key.hashCode() % newTable.length);
             if (newTable[index] == null) {
                 newTable[index] = newChain.get();
             }

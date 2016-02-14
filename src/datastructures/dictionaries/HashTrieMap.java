@@ -5,12 +5,16 @@ import java.util.Iterator;
 import java.util.Map;
 import java.util.Map.Entry;
 import java.util.function.Supplier;
+import java.util.AbstractMap.SimpleEntry;
 
 
+import cse332.datastructures.containers.Item;
 import cse332.exceptions.NotYetImplementedException;
 import cse332.interfaces.misc.BString;
 import cse332.interfaces.misc.Dictionary;
 import cse332.interfaces.trie.TrieMap;
+import cse332.interfaces.worklists.WorkList;
+import datastructures.worklists.ListFIFOQueue;
 
 /**
  * See cse332/interfaces/trie/TrieMap.java
@@ -25,14 +29,19 @@ public class HashTrieMap<A extends Comparable<A>, K extends BString<A>, V> exten
         }
 
         public HashTrieNode(V value) {
-            Supplier<Dictionary<K, V>> newChain = () -> new MoveToFrontList<K, V>();
+            Supplier<Dictionary<A, HashTrieNode>> newChain = () -> new MoveToFrontList();
             this.pointers = new ChainingHashTable(newChain);
             this.value = value;
         }
 
         @Override
         public Iterator<Entry<A, HashTrieMap<A, K, V>.HashTrieNode>> iterator() {
-            return pointers.iterator();
+            WorkList<Entry<A, HashTrieNode>> list = new ListFIFOQueue<Entry<A, HashTrieNode>>();
+            for(Item<A, HashTrieNode> i: pointers) {
+                Entry entry = new SimpleEntry(i.key, i.value);
+                list.add(entry);
+            }
+            return list.iterator();
         }
     }
 
@@ -49,10 +58,10 @@ public class HashTrieMap<A extends Comparable<A>, K extends BString<A>, V> exten
     		throw new IllegalArgumentException();
         HashTrieNode curr = (HashTrieNode) this.root;
         for (A ch : key) {
-        	if (!(curr.pointers.containsKey(ch))) {
-        		curr.pointers.put(ch, new HashTrieNode());
+        	if (!(curr.pointers.find(ch) != null)) {
+        		curr.pointers.insert(ch, new HashTrieNode());
         	}
-        	curr = curr.pointers.get(ch);
+        	curr = curr.pointers.find(ch);
         }
     	V previous = curr.value;
     	curr.value = value;
@@ -69,8 +78,8 @@ public class HashTrieMap<A extends Comparable<A>, K extends BString<A>, V> exten
     		throw new IllegalArgumentException();
         HashTrieNode curr = (HashTrieNode)this.root;
         for (A ch : key) {
-        	if (curr.pointers.containsKey(ch)) {
-        		curr = curr.pointers.get(ch);
+        	if (curr.pointers.find(ch) != null) {
+        		curr = curr.pointers.find(ch);
         	} else {
         		return null;
         	}
@@ -85,8 +94,8 @@ public class HashTrieMap<A extends Comparable<A>, K extends BString<A>, V> exten
     		throw new IllegalArgumentException();
     	HashTrieNode curr = (HashTrieNode)this.root;
         for (A ch : key) {
-        	if (curr.pointers.containsKey(ch)) {
-        		curr = curr.pointers.get(ch);
+        	if (curr.pointers.find(ch) != null) {
+        		curr = curr.pointers.find(ch);
         	} else {
         		return false;
         	}
@@ -121,11 +130,11 @@ public class HashTrieMap<A extends Comparable<A>, K extends BString<A>, V> exten
     		}
     	} else {
     		A nextChar = ite.next();
-    		if (!root.pointers.containsKey(nextChar))
+    		if (!(root.pointers.find(nextChar) != null))
     			return root;
-    		HashTrieNode temp = delete(root.pointers.get(nextChar), ite);
+    		HashTrieNode temp = delete(root.pointers.find(nextChar), ite);
     		if (temp == null)
-				root.pointers.remove(nextChar);
+				root.pointers.delete(nextChar);
     		if (root.pointers.size() > 0) {
     			return root;
     		} else {

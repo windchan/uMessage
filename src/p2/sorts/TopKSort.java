@@ -21,11 +21,17 @@ public class TopKSort {
                 heap.add(array[i]);
             }
         }
-        for(int i = 0; i < k; i++) {
-            array[i] = heap.next();
-        }
-        for(int i = k; i < array.length; i++) {
-            array[i] = null;
-        }
+        if(k > array.length - 1) {
+            for(int i = 0; i < array.length; i++) {
+                array[i] = heap.next();
+            }
+        } else {
+            for(int i = 0; i < k; i++) {
+                array[i] = heap.next();
+            }
+            for(int i = k; i < array.length; i++) {
+                array[i] = null;
+            }
+        }   
     }
 }

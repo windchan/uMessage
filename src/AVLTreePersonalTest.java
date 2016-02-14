@@ -54,7 +54,7 @@ public class AVLTreePersonalTest {
         }
     }
     
-    @SuppressWarnings("rawtypes")
+/*    @SuppressWarnings("rawtypes")
     public static int checkStructure() {
         AVLTree<Integer, Integer> tree = new AVLTree<>();
         incCount(tree, 10);
@@ -97,7 +97,7 @@ public class AVLTreePersonalTest {
 //      System.err.println(trueData);
         return nestd(root).equals(trueData) &&
                 nestc(root).equals(trueCounts) ? 1 : 0;
-    }
+    }*/
 
     @SuppressWarnings("rawtypes")
     public static String nestd(BSTNode root) {

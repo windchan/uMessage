@@ -41,7 +41,7 @@ public class MinFourHeap<E> extends PriorityWorkList<E> {
         	}
         	data = largerHeap;
         }
-        data[size] = work;
+        data[size] = (E) work;
         
         int i = size;
         while(i != 0 && comparator.compare(data[i], data[(i - 1) / CHILDREN]) < 0) {
@@ -91,7 +91,7 @@ public class MinFourHeap<E> extends PriorityWorkList<E> {
     @Override
     public void clear() {
     	@SuppressWarnings("unchecked")
-    	E[] newData = (E[])new Comparable[DEFAULT_CAPACITY];
+    	E[] newData = (E[])new Object[DEFAULT_CAPACITY];
     	data = newData;
         size = 0;
         level = 2;

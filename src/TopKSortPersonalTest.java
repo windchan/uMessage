@@ -8,6 +8,7 @@ public class TopKSortPersonalTest {
         // TODO Auto-generated method stub
         System.out.print(integer_sorted());
         System.out.print(integer_random());
+        System.out.println(-12 % 5);
     }
     
     public static int integer_sorted() {
