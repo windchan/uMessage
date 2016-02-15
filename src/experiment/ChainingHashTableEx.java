@@ -13,49 +13,79 @@ public class ChainingHashTableEx {
     public static void main(String[] args) {
         // bst
         try {
-            long time = testDic(bstConstructor());
-            System.out.println("BST: " + time);
-        } catch (FileNotFoundException e) {
+            ChainingHashTable<String, Integer> table = new ChainingHashTable<String, Integer>(
+                    bstConstructor());
+            long insertTime = testDicInsert(table);
+            System.out.println("BST insertion: " + insertTime);
             
+            long findTime = testDicFind(table);
+            System.out.println("BST find: " + findTime);
+        } catch (FileNotFoundException e) {
+
         }
-        
-        //avl
+
+        // avl
         try {
-            long time = testDic(avlConstructor());
-            System.out.println("AVL: " + time);
-        } catch (FileNotFoundException e) {
+            ChainingHashTable<String, Integer> table = new ChainingHashTable<String, Integer>(
+                    avlConstructor());
+            long insertTime = testDicInsert(table);
+            System.out.println("AVL insertion: " + insertTime);
             
+            long findTime = testDicFind(table);
+            System.out.println("AVL find: " + findTime);
+        } catch (FileNotFoundException e) {
+
         }
-        
-        //mtf
+
+        // mtf
         try {
-            long time = testDic(mtfConstructor());
-            System.out.println("MTF: " + time);
-        } catch (FileNotFoundException e) {
+            ChainingHashTable<String, Integer> table = new ChainingHashTable<String, Integer>(
+                    mtfConstructor());
+            long insertTime = testDicInsert(table);
+            System.out.println("MTF insertion: " + insertTime);
             
+            long findTime = testDicFind(table);
+            System.out.println("MTF find: " + findTime);
+        } catch (FileNotFoundException e) {
+
         }
     }
 
     @SuppressWarnings({ "rawtypes", "unchecked" })
-    public static <K,V> Supplier<Dictionary<K,V>> bstConstructor() {
+    public static <K, V> Supplier<Dictionary<K, V>> bstConstructor() {
         return () -> new BinarySearchTree();
     }
+
     @SuppressWarnings({ "rawtypes", "unchecked" })
-    public static <K,V> Supplier<Dictionary<K, V>> avlConstructor() {
+    public static <K, V> Supplier<Dictionary<K, V>> avlConstructor() {
         return () -> new AVLTree();
     }
-    
-    @SuppressWarnings({"rawtypes", "unchecked"})
+
+    @SuppressWarnings({ "rawtypes", "unchecked" })
     public static <K, V> Supplier<Dictionary<K, V>> mtfConstructor() {
         return () -> new MoveToFrontList();
     }
-    
-    public static long testDic(Supplier<Dictionary<String, Integer>> sup) throws FileNotFoundException {
-        ChainingHashTable<String, Integer> table = new ChainingHashTable<String, Integer>(sup);
+
+    public static long testDicInsert(ChainingHashTable<String, Integer> table)
+            throws FileNotFoundException {
+
         Scanner scan = new Scanner(new File("random_dic_large.txt"));
         long start = System.currentTimeMillis();
         while (scan.hasNext()) {
             table.insert(scan.next(), new Integer("1"));
+        }
+        long end = System.currentTimeMillis();
+        return end - start;
+    }
+
+    public static long testDicFind(ChainingHashTable<String, Integer> table)
+            throws FileNotFoundException {
+//        Scanner scan = new Scanner(new File("archive.txt"));
+//        Scanner scan = new Scanner(new File("spoken.corpus"));
+        Scanner scan = new Scanner(new File("one_word.txt"));
+        long start = System.currentTimeMillis();
+        while (scan.hasNext()) {
+            table.find(scan.next());
         }
         long end = System.currentTimeMillis();
         return end - start;
