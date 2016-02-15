@@ -37,8 +37,8 @@ public class QuickSort {
                 }
                 steps++;
             }
-            return sort(array, lo, i, comparator) + 
-            sort(array, i + 1, hi, comparator) + steps;
+            return steps + sort(array, lo, i, comparator) + 
+            sort(array, i + 1, hi, comparator);
         }       
         return 0;
     }
