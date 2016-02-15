@@ -15,13 +15,12 @@ public class TopKSort {
             if(heap.size() >= k) {
                 if(comparator.compare(heap.peek(), array[i]) < 0) {
                     heap.next();
-                    steps += Math.ceil(HeapSort.log4(heap.size()));
                     heap.add(array[i]);
                 }
             } else {
                 heap.add(array[i]);
             }
-            steps++;
+            steps += Math.ceil(HeapSort.log4(heap.size()));
         }
         if(k > array.length - 1) {
             for(int i = 0; i < array.length; i++) {
