@@ -40,7 +40,36 @@ Throughout p1 and p2, you have written (or used) several distinct implementation
 ### BST vs. AVLTree ###
 Construct input files to NGramTester of your choosing to demonstrate that an AVL Tree is asymptotically better
 than a Binary Search Tree.
-<pre>bst: 815332 2352026</pre>
+<pre>
+	Experiment constants:
+		running machine: CSE lab linux machine
+		N as in N-gram: 2
+		Input file: sorted\_dic\_large.txt
+	&nbsp;
+	In this experiment, we use NGramTester_avl_bst.java to test runtime of find and insert for both avl tree and 
+	bst tree. The code that executes avl find and insert in NGramTester\_avl\_bst.java is
+	&nbsp;
+	WordSuggestor suggestions = new WordSuggestor("sorted\_dic\_large.txt", 2, -1,
+	    NGramTester\_avl\_bst.avlConstructor(),
+	    NGramTester\_avl\_bst.avlConstructor());
+	&nbsp;               
+    	And the code that executes bst find and insert in NGramTester\_avl\_bst.java is
+    &nbsp;	
+    	WordSuggestor suggestions = new WordSuggestor("sorted\_dic\_large.txt", 2, -1,
+            NGramTester\_avl\_bst.bstConstructor(),
+            NGramTester\_avl\_bst.bstConstructor());
+    &nbsp;              
+    	The reason the inner map and outer map need to be both avl tree or bst tree is because the program
+    	executes find and insert of both inner map and outer map, so they need to be the same.
+    &nbsp;
+    	The input file is a sorted dictionary, so theoretically bst tree will have worse case runtime O(n), 
+    	while avl tree will have runtime O(logn).
+	&nbsp;
+	Data:
+		![alt tag](../../experiment/bstvsavl.png)
+	From the experiment data we can see that avl is significantly faster than standard bst. So AVL Tree is
+	asymptotically better than a BST.
+</pre>
 
 ### BST Worst Case vs. BST Best Case ###
 We know that the worst case for a BST insertion is O(n) and the best case is O(lg n).  Construct input
@@ -52,7 +81,10 @@ Is it surprising?
 Your ChainingHashTable should take as an argument to its constructor the type of "chains" it uses.  Determine
 which type of chain is (on average) best: an MTFList, a BST, or an AVL Tree.  Explain your intuition on why
 the answer you got makes sense (or doesn't!). 
-<pre>TODO</pre>
+<pre>
+	
+
+</pre>
  
 ### Hash Functions ###
 Write a new hash function (it doesn't have to be any good, but remember to include the code in your repository).
