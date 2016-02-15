@@ -1,6 +1,7 @@
 package experiment;
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.PrintStream;
 import java.io.PrintWriter;
 import java.util.Scanner;
 import experiment.BinarySearchTree.*;
@@ -17,36 +18,25 @@ public class BST_best_case {
         while (scan.hasNext()) {
             avl.insert(scan.next(), 1);
         }
-        
-        PrintWriter pw = new PrintWriter(new File("avl_level.txt"));
-        AvlLevel((AVLNode)avl.root, pw);
-        
+        PrintStream ps = new PrintStream("avl_level.txt");
+        AvlPreOrder((AVLNode)avl.root, ps);
         long start = System.currentTimeMillis();
-
+        
         scan = new Scanner(new File("avl_level.txt"));
         while (scan.hasNext()) {
             bst.insert(scan.next(), 1);
         }
-        
         long end = System.currentTimeMillis();
 
         System.out.println(end - start);
 
     }
     
-    public static void AvlLevel(AVLNode root, PrintWriter pw) {
+    public static void AvlPreOrder(AVLNode root, PrintStream ps) {
         if (root != null) {
-            WorkList<AVLNode> q = new ListFIFOQueue<AVLNode>();
-            q.add(root);
-            while (q.size() > 0) {
-                if (q.peek().getAVLChildren(0) != null) {
-                    q.add(q.peek().getAVLChildren(0));
-                }
-                if (q.peek().getAVLChildren(1) != null) {
-                    q.add(q.peek().getAVLChildren(1));
-                }
-                pw.write(q.next().key.toString()+"\n");
-            }
+            ps.println(root.key);
+            AvlPreOrder(root.getAVLChildren(0), ps);
+            AvlPreOrder(root.getAVLChildren(1), ps);
         }
     }
 }

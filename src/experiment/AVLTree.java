@@ -24,7 +24,6 @@ package experiment;
  */
 
 public class AVLTree<K extends Comparable<K>, V> extends BinarySearchTree<K, V> {
-
     public class AVLNode extends BSTNode {
         private int height;
 
@@ -76,8 +75,8 @@ public class AVLTree<K extends Comparable<K>, V> extends BinarySearchTree<K, V> 
                 int child = Integer.signum(direction + 1);
                 AVLNode ret;
                 if (current.getAVLChildren(child) != null) {
-                    current.children[child] = insert(current.getAVLChildren(child), key, value);
-                } else {
+                    current.children[child] = insert(current.getAVLChildren(child), key, value);                   
+                } else {         
                     current.children[child] = new AVLNode(key, value, 0);
                     size++;
                 }
