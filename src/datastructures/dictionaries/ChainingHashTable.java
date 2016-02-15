@@ -27,7 +27,7 @@ public class ChainingHashTable<K, V> extends DeletelessDictionary<K, V> {
     private Supplier<Dictionary<K, V>> newChain;  
     private Dictionary<K, V>[] table;
     private int primeIndex;
-    private final static int[] PRIMES = {101, 211, 409, 821, 1657, 3299, 6599, 12163, 24391, 48821, 97073, 202309};
+    private final static int[] PRIMES = {101, 211, 409, 821, 1657, 3299, 6599, 12163, 24391, 48821, 97073, 202309, 406981, 813647, 1621079};
 
     @SuppressWarnings("unchecked")
     public ChainingHashTable(Supplier<Dictionary<K, V>> newChain) {
