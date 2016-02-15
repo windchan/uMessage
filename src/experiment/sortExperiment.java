@@ -6,7 +6,7 @@ public class sortExperiment {
 
     private static final int SIZE = 50000;
     private static final Random rand = new Random();
-    private static final int K = 50000;
+    private static final int K = 100000;
     
     public static void main(String[] args) {
         

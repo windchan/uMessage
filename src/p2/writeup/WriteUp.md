@@ -156,6 +156,7 @@ hash function make?  (You should keep all other inputs (e.g., the chain type) co
 	Data:
 	&nbsp;
 	spoken.corpus:
+	&nbsp;
 	![alt tag](../../experiment/worseHashFuncCorpus.png)
 	&nbsp;
 	random\_dic\_large.txt:
