@@ -44,6 +44,7 @@ than a Binary Search Tree.
 	Experiment constants:
 		running machine: CSE lab linux machine
 		N as in N-gram: 2
+		Memory usage allowed: 6G
 		Input file: sorted\_dic\_large.txt
 	&nbsp;
 	In this experiment, we use NGramTester\_avl\_bst.java to test runtime of find and insert for both avl tree and 
@@ -79,7 +80,8 @@ Is it surprising?
 	Experiment constants:
 		running machine: CSE lab linux machine
 		N as in N-gram: 2
-		Input file: sorted\_dic\_large.txt
+		Memory usage allowed: 6G
+		Input file: sorted\_dic\_large.txt, avl_preorder.txt
 	&nbsp;
 	In this experiment, we use BSTInsertAnalysis.java to test runtime of insert for bst best case and bst worst
 	case. There are two input files: avl\_preorder.txt and sorted\_dic\_large.txt. avl\_preorder.txt is generated
@@ -105,7 +107,28 @@ Your ChainingHashTable should take as an argument to its constructor the type of
 which type of chain is (on average) best: an MTFList, a BST, or an AVL Tree.  Explain your intuition on why
 the answer you got makes sense (or doesn't!). 
 <pre>
-	
+	Experiment constants:
+		running machine: CSE lab linux machine
+		N as in N-gram: 2
+		Input file: random\_dic\_large.txt, spoken.corpus
+	&nbsp;
+	In this experiment, we use ChainingHashTableEx.java to test runtime of find and insert for a chaininghashtable
+	that uses three different types of chains(MTFList, BST, AVL Tree). On average we find that a MTF list is the best.
+	The input file is random\_dic\_large.txt which contains a random order of words, and spoken.corpus which contains 
+	a huge amount of words.
+	&nbsp;
+	Data: 
+	spoken.corpus:
+	&nbsp;
+	![alt tag](../../experiment/CHTSpokenCorpus.png)
+	random\_dic\_large.txt
+	&nbsp;
+	![alt tag](../../experiment/CHTRandomDic.png)
+	&nbsp;
+	For each file we can see that MTF list is the fastest on both find and insert. The reason that it is fastest on
+	insert is because it just puts the element to the front which is O(1). The reason that it is fast on find is probably
+	because the loading factor for a chaninghashtable is always less than 1, so there will be few elements in a 
+	separate chain, in which a bst could become an overkill, and has worse performance than a MTF list.
 
 </pre>
  

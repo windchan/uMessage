@@ -80,8 +80,9 @@ public class ChainingHashTableEx {
     public static long testDicFind(ChainingHashTable<String, Integer> table)
             throws FileNotFoundException {
 //        Scanner scan = new Scanner(new File("archive.txt"));
-//        Scanner scan = new Scanner(new File("spoken.corpus"));
-        Scanner scan = new Scanner(new File("one_word.txt"));
+        Scanner scan = new Scanner(new File("random_dic_large.txt"));
+//        Scanner scan = new Scanner(new File("random_dic_large.txt"));
+//        Scanner scan = new Scanner(new File("one_word.txt"));
         long start = System.currentTimeMillis();
         while (scan.hasNext()) {
             table.find(scan.next());
