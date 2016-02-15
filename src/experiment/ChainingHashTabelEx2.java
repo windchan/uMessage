@@ -10,15 +10,42 @@ import cse332.interfaces.misc.Dictionary;
 public class ChainingHashTabelEx2 {
 
     public static void main(String[] args) {
-        // TODO Auto-generated method stub
-        ChainingHashTable<CircularArrayFIFOQueue<Character>, Integer> table = new ChainingHashTable<>(
-                bstConstructor());
+        // TODO Auto-generated method stub       
+        // bst
         try {
+            ChainingHashTable<CircularArrayFIFOQueue<Character>, Integer> table = new ChainingHashTable<>(
+                    bstConstructor());
+            long insertTime = testDicInsert(table);
+            System.out.println("BST insertion: " + insertTime);
+            
+            long findTime = testDicFind(table);
+            System.out.println("BST find: " + findTime);
+        } catch (FileNotFoundException e) {
+
+        }
+        
+        // avl
+        try {
+            ChainingHashTable<CircularArrayFIFOQueue<Character>, Integer> table = new ChainingHashTable<>(
+                    avlConstructor());
             long insertTime = testDicInsert(table);
             System.out.println("AVL insertion: " + insertTime);
-
+            
             long findTime = testDicFind(table);
             System.out.println("AVL find: " + findTime);
+        } catch (FileNotFoundException e) {
+
+        }
+
+        // mtf
+        try {
+            ChainingHashTable<CircularArrayFIFOQueue<Character>, Integer> table = new ChainingHashTable<>(
+                    mtfConstructor());
+            long insertTime = testDicInsert(table);
+            System.out.println("MTF insertion: " + insertTime);
+            
+            long findTime = testDicFind(table);
+            System.out.println("MTF find: " + findTime);
         } catch (FileNotFoundException e) {
 
         }
