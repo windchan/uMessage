@@ -22,7 +22,7 @@ public class HeapSort {
         return step;
     }
     
-    private static double log4(int n) {
+    public static double log4(int n) {
         return Math.log10(n) / Math.log10(4);
     }
 }
