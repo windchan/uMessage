@@ -45,5 +45,4 @@ public class NGramTester_avl_bst {
             e.printStackTrace();
         }
     }
-    
 }
