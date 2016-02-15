@@ -7,7 +7,7 @@ import java.util.function.Supplier;
 
 import cse332.interfaces.misc.Dictionary;
 
-public class ChainingHashTabelEx2 {
+public class ChainingHashTableEx2 {
 
     public static void main(String[] args) {
         // TODO Auto-generated method stub       
