@@ -6,6 +6,8 @@ import java.util.Scanner;
 import java.util.function.Supplier;
 
 import cse332.interfaces.misc.Dictionary;
+import cse332.interfaces.worklists.WorkList;
+import datastructures.worklists.ListFIFOQueue;
 
 public class ChainingHashTableEx2 {
 
@@ -70,26 +72,40 @@ public class ChainingHashTableEx2 {
             ChainingHashTable<CircularArrayFIFOQueue<Character>, Integer> table)
                     throws FileNotFoundException {
 
-        Scanner scan = new Scanner(new File("random_dic_large.txt"));
-        long start = System.currentTimeMillis();
+        Scanner scan = new Scanner(new File("spoken.corpus"));
+        WorkList<CircularArrayFIFOQueue<Character>> w = new ListFIFOQueue<CircularArrayFIFOQueue<Character>>();    
         while (scan.hasNext()) {
-            table.insert(makeStr(scan.next()), new Integer("1"));
+            w.add(makeStr(scan.next()));
+        }
+        
+        long start = System.currentTimeMillis();
+        
+        while (w.hasWork()) {
+            table.insert(w.next(), new Integer("1"));
         }
         long end = System.currentTimeMillis();
+        
         return end - start;
     }
 
     public static long testDicFind(
             ChainingHashTable<CircularArrayFIFOQueue<Character>, Integer> table)
                     throws FileNotFoundException {
-        Scanner scan = new Scanner(new File("archive.txt"));
+        Scanner scan = new Scanner(new File("spoken.corpus"));
         // Scanner scan = new Scanner(new File("spoken.corpus"));
         // Scanner scan = new Scanner(new File("one_word.txt"));
-        long start = System.currentTimeMillis();
+        WorkList<CircularArrayFIFOQueue<Character>> w = new ListFIFOQueue<CircularArrayFIFOQueue<Character>>(); 
         while (scan.hasNext()) {
-            table.find(makeStr(scan.next()));
+            w.add(makeStr(scan.next()));
+        }
+        
+        long start = System.currentTimeMillis();
+        
+        while (w.hasWork()) {
+            table.find(w.next());
         }
         long end = System.currentTimeMillis();
+        
         return end - start;
     }
 

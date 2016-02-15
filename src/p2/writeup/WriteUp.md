@@ -140,6 +140,7 @@ hash function make?  (You should keep all other inputs (e.g., the chain type) co
 	Experiment constants:
 		running machine: CSE lab linux machine
 		N as in N-gram: 2
+		Memory usage allowed: 6G
 		Input file: random\_dic\_large.txt, spoken.corpus
 	&nbsp;
 	In this experiment, we change the inserting index from 
@@ -158,7 +159,7 @@ hash function make?  (You should keep all other inputs (e.g., the chain type) co
 	&nbsp;
 	random\_dic\_large.txt:
 	&nbsp;
-	![alt tag](../../experiment/worseHashFunc.png)
+	![alt tag](../../experiment/worseHashFunction.png)
 	&nbsp;
 	From the data, we can clearly see that the runtime is much larger than using the previous hashing function. 
 	The difference can be huge between a good hashing function and a super worse hashing function.
