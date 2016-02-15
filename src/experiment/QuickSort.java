@@ -23,7 +23,6 @@ public class QuickSort {
             int front = lo + 1;
             int end = hi;
             swap(array, lo, i);
-            steps++;
             E pivot = array[lo];
             i = lo;
             while(front <= end) {
