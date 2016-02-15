@@ -28,6 +28,12 @@ public class sortExperiment {
             nums[i] = rand.nextInt(10000);
         }
         System.out.println("top k sort with K = " + K + " steps: " + TopKSort.sort(nums, K));
+        
+        // insertion sort
+        for (int i = 0; i < nums.length; i++) {
+            nums[i] = rand.nextInt(10000);
+        }
+        System.out.println("insertion sort steps: " + InsertionSort.sort(nums));
     }
 
 }
