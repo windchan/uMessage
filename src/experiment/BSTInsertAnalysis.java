@@ -10,7 +10,7 @@ import cse332.interfaces.worklists.WorkList;
 import datastructures.worklists.ListFIFOQueue;
 
 
-public class BST_best_case {
+public class BSTInsertAnalysis {
     public static void main(String[] args) throws FileNotFoundException {
         BinarySearchTree<String, Integer> bst = new BinarySearchTree<String, Integer>();
         AVLTree<String, Integer> avl = new AVLTree<String, Integer>();
@@ -22,7 +22,8 @@ public class BST_best_case {
         AvlPreOrder((AVLNode)avl.root, ps);
         long start = System.currentTimeMillis();
         
-        scan = new Scanner(new File("avl_level.txt"));
+        //scan = new Scanner(new File("avl_level.txt"));    // best case
+        scan = new Scanner(new File("sorted_dic_large.txt"));     // worst case
         while (scan.hasNext()) {
             bst.insert(scan.next(), 1);
         }
