@@ -18,12 +18,12 @@ public class BSTInsertAnalysis {
         while (scan.hasNext()) {
             avl.insert(scan.next(), 1);
         }
-        PrintStream ps = new PrintStream("avl_level.txt");
+        PrintStream ps = new PrintStream("avl_preorder.txt");
         AvlPreOrder((AVLNode)avl.root, ps);
         long start = System.currentTimeMillis();
         
-        //scan = new Scanner(new File("avl_level.txt"));    // best case
-        scan = new Scanner(new File("sorted_dic_large.txt"));     // worst case
+        scan = new Scanner(new File("avl_preorder.txt"));    // best case
+        //scan = new Scanner(new File("sorted_dic_large.txt"));     // worst case
         while (scan.hasNext()) {
             bst.insert(scan.next(), 1);
         }

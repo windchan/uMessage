@@ -46,8 +46,8 @@ than a Binary Search Tree.
 		N as in N-gram: 2
 		Input file: sorted\_dic\_large.txt
 	&nbsp;
-	In this experiment, we use NGramTester_avl_bst.java to test runtime of find and insert for both avl tree and 
-	bst tree. The code that executes avl find and insert in NGramTester\_avl\_bst.java is
+	In this experiment, we use NGramTester\_avl\_bst.java to test runtime of find and insert for both avl tree and 
+	BST. The code that executes avl find and insert in NGramTester\_avl\_bst.java is
 	&nbsp;
 	WordSuggestor suggestions = new WordSuggestor("sorted\_dic\_large.txt", 2, -1,
 	    NGramTester\_avl\_bst.avlConstructor(),
@@ -64,9 +64,9 @@ than a Binary Search Tree.
     &nbsp;
     	The input file is a sorted dictionary, so theoretically bst tree will have worse case runtime O(n), 
     	while avl tree will have runtime O(logn).
-	&nbsp;
+	&nbsp; 
 	Data:
-		![alt tag](../../experiment/bstvsavl.png)
+		![alt tag](../../experiment/BSTvsAVL.png)
 	From the experiment data we can see that avl is significantly faster than standard bst. So AVL Tree is
 	asymptotically better than a BST.
 </pre>
@@ -75,7 +75,30 @@ than a Binary Search Tree.
 We know that the worst case for a BST insertion is O(n) and the best case is O(lg n).  Construct input
 files of your choosing that demonstrate these best and worst cases for a large n.  How big is the difference?
 Is it surprising?
-<pre>TODO</pre>
+<pre>
+	Experiment constants:
+		running machine: CSE lab linux machine
+		N as in N-gram: 2
+		Input file: sorted\_dic\_large.txt
+	&nbsp;
+	In this experiment, we use BSTInsertAnalysis.java to test runtime of insert for bst best case and bst worst
+	case. There are two input files: avl\_preorder.txt and sorted\_dic\_large.txt. avl\_preorder.txt is generated
+	by a pre-order traversal of an avl tree so that when we call insert, the final bst will be balanced.
+	sorted\_dic\_large.txt contains words in a sorted alphabetical order so that when we call insert, the final
+	bst will be a linked list. The code for using two input files is:
+	&nbsp;
+	scan = new Scanner(new File("avl_preorder.txt"));    // best case
+    	//scan = new Scanner(new File("sorted\_dic\_large.txt"));     // worst case
+    &nbsp;
+    	We switch commenting out one of the two lines to use each input file.
+    &nbsp;
+    	Data:
+    	![alt tag](../../experiment/BSTInsert.png)
+    	&nbsp;
+    	From the data we can see that for large n (50000) the difference of runtime is big. It is not surprising
+    	because we already know the answer
+
+</pre>
  
 ### ChainingHashTable ###
 Your ChainingHashTable should take as an argument to its constructor the type of "chains" it uses.  Determine
