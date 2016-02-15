@@ -136,7 +136,33 @@ the answer you got makes sense (or doesn't!).
 Write a new hash function (it doesn't have to be any good, but remember to include the code in your repository).
 Compare the runtime of your ChainingHashTable when the hash function is varied.  How big of a difference can the
 hash function make?  (You should keep all other inputs (e.g., the chain type) constant.)
-<pre>TODO</pre>
+<pre>
+	Experiment constants:
+		running machine: CSE lab linux machine
+		N as in N-gram: 2
+		Input file: random\_dic\_large.txt, spoken.corpus
+	&nbsp;
+	In this experiment, we change the inserting index from 
+	&nbsp;
+		int index = Math.abs(key.hashcode() % table.length);
+	&nbsp;
+	to
+	&nbsp;
+		int index = 1;
+	&nbsp;
+	so that all elements will be added into one slot in a chaininghashtable
+	&nbsp;
+	Data:
+	&nbsp;
+	spoken.corpus:
+	&nbsp;
+	random\_dic\_large.txt:
+	&nbsp;
+	![alt tag](../../experiment/worseHashFunc.png)
+	&nbsp;
+	From the data, we can clearly see that the runtime is much larger than using the previous hashing function. 
+	The difference can be huge between a good hashing function and a super worse hashing function.
+</pre>
 
 ### General Purpose Dictionary ###
 Compare all of the dictionaries (on their best settings, as determined above) on several large input files.  Is
