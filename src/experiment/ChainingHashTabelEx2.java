@@ -12,7 +12,7 @@ public class ChainingHashTabelEx2 {
     public static void main(String[] args) {
         // TODO Auto-generated method stub
         ChainingHashTable<CircularArrayFIFOQueue<Character>, Integer> table = new ChainingHashTable<>(
-                avlConstructor());
+                bstConstructor());
         try {
             long insertTime = testDicInsert(table);
             System.out.println("AVL insertion: " + insertTime);
