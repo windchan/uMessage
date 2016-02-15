@@ -16,8 +16,9 @@ public class HeapSort {
             step += Math.ceil(log4(heap.size()));
         }
         for(int i = 0; i < array.length; i++) {
-            array[i] = heap.next();
             step += Math.ceil(log4(heap.size()));
+            array[i] = heap.next();
+            
         }
         return step;
     }
