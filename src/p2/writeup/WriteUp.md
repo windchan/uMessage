@@ -45,6 +45,7 @@ than a Binary Search Tree.
 		running machine: CSE lab linux machine
 		N as in N-gram: 2
 		Memory usage allowed: 6G
+		Test: NGramTester\_avl\_bst.java
 		Input file: sorted\_dic\_large.txt
 	&nbsp;
 	In this experiment, we use NGramTester\_avl\_bst.java to test runtime of find and insert for both avl tree and 
@@ -81,6 +82,7 @@ Is it surprising?
 		running machine: CSE lab linux machine
 		N as in N-gram: 2
 		Memory usage allowed: 6G
+		Test: BSTInsertAnalysis.java
 		Input file: sorted\_dic\_large.txt, avl_preorder.txt
 	&nbsp;
 	In this experiment, we use BSTInsertAnalysis.java to test runtime of insert for bst best case and bst worst
@@ -110,6 +112,7 @@ the answer you got makes sense (or doesn't!).
 	Experiment constants:
 		running machine: CSE lab linux machine
 		N as in N-gram: 2
+		Test: ChainingHashTableEx.java
 		Input file: random\_dic\_large.txt, spoken.corpus
 	&nbsp;
 	In this experiment, we use ChainingHashTableEx.java to test runtime of find and insert for a chaininghashtable
@@ -141,13 +144,14 @@ hash function make?  (You should keep all other inputs (e.g., the chain type) co
 		running machine: CSE lab linux machine
 		N as in N-gram: 2
 		Memory usage allowed: 6G
+		Test: ChainingHashTableEx2.java
 		Input file: random\_dic\_large.txt, spoken.corpus
 	&nbsp;
 	In this experiment, we change the hashcode function in CircularArrayFIFOQueue from the original to
 	&nbsp;
 		int index = 5;
 	&nbsp;
-	so that all elements will be added into one slot in a chaininghashtable
+	so that all elements will be added into one slot in a chaininghashtable.
 	&nbsp;
 	Data:
 	&nbsp;
@@ -177,16 +181,51 @@ there are many bad ones.  We expect you to justify your choice.
 <pre>
 	Experiment constants:
 		running machine: CSE lab linux machine
-		N as in N-gram: 2
-		Input file: sorted\_dic\_large.txt
-		SIZE
+		SIZE: 50000, 100000, 200000.
+		Test: sortExperiment.java
 	&nbsp;
 	In this experiment we use sortExperiment.java to test several general purpose sorts, for each sort, we 
 	fix the SIZE(the amount of integers to sort) to compare these sorts under the same condition.
 	&nbsp;
+	Definition of steps:
+	&nbsp;
+	we define steps to be the number of comparisons.
+	&nbsp;
+	For heapsort, we have the following code to calculate steps:
+	&nbsp;
+	![alt tag](../../experiment/stepCountInHeapSort.png)
+	&nbsp;
+	in the first for each loop, after adding an element into a heap, the average number of steps should add log4(n) 
+	because it is a minfourheap and has a height of log4(n), for each height we need one comparison to percolate up.
+	&nbsp;
+	In the second for each loop, after removing min from the heap, the average number of steps should also add
+	log4(n) after approximate careful calculation(namely, the ratio of the amount of non leaves and the amount of 
+	leaves is 3:1, and non leaves take four comparison each time, leaves take no comparison each time, so
+	(3 * 0 + 1 * 4) / 4 = 1, so average number of 1 comparison for each level.)
+	&nbsp;
+	For Quicksort, we have the following code:
+	&nbsp;
+	![alt tag](../../experiment/stepCountInQuickSort.png)
+	&nbsp;
+	within each while loop, there is one comparison, so step should increment one. We did not increment step for finding
+	the pivot and swap it to the front since that takes constant time.
+	&nbsp;
+	For Insertionsort, we have the following code to calculate steps:
+	&nbsp;
+	![alt tag](../../experiment/stepCountInInsertionSort.png)
+	&nbsp;
+	within each for loop, there is one comparison, so step should increment one.
+	&nbsp;
 	Data:
 	&nbsp;
 	![alt tag](../../experiment/generalSort.png)
+	&nbsp;
+	from the data, we reach the several conclusions:
+	1)heapsort is the fastest according our definition of steps.
+	2)steps of heapsort and quicksort increase within the bound nlogn, which satisfies the theoretical bound O(nlogn),
+	and stesp of insertion sort increase within the bound n^2, which satisfies the theoretical bound O(n^2).
+	3)topKsort is faster than heapsort when k < n ,and equivilant to heapsort when k = n.
+	
 
 </pre>
 
@@ -225,4 +264,4 @@ your best algorithms and data structures on a reasonable machine.
 
 ## Above and Beyond ##
 -   Did you do any Above and Beyond?  Describe exactly what you implemented.
- <pre>TODO</pre>
+ <pre>Wat</pre>
