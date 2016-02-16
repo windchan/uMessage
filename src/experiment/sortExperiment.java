@@ -4,7 +4,7 @@ import java.util.Random;
 
 public class sortExperiment {
 
-    private static final int SIZE = 200000;
+    private static final int SIZE = 10000;
     private static final Random rand = new Random();
     private static final int K = 50000;
     
@@ -28,7 +28,6 @@ public class sortExperiment {
             nums[i] = rand.nextInt(10000);
         }
         System.out.println("top k sort with K = " + K + " steps: " + TopKSort.sort(nums, K));
-        
         // insertion sort
         for (int i = 0; i < nums.length; i++) {
             nums[i] = rand.nextInt(10000);

@@ -170,7 +170,14 @@ hash function make?  (You should keep all other inputs (e.g., the chain type) co
 ### General Purpose Dictionary ###
 Compare all of the dictionaries (on their best settings, as determined above) on several large input files.  Is
 there a clear winner?  Why or why not?  Is the winner surprising to you?
-<pre>TODO</pre>
+<pre>
+	![alt tag](../../experiment/dataStructuresCompetition.png)
+	&nbsp;
+	&nbsp;
+	&nbsp;
+	![alt tag](../../experiment/dataStructuresCompetitionMid.png)
+
+</pre>
 
 ### General Sorts ###
 You have several general purpose sorts (InsertionSort, HeapSort, TopKSort).  We would like you to compare these
