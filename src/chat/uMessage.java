@@ -67,7 +67,7 @@ public class uMessage {
             int N = uMessage.N;
             try {
                 uMessage.markov[this.i] = new WordSuggestor(uMessage.CORPUS, N - this.i,
-                        1, uMessage.NEW_OUTER, uMessage.NEW_INNER);
+                        4, uMessage.NEW_OUTER, uMessage.NEW_INNER);
                 uMessage.loading[this.i] = false;
                 this.window.update();
             } catch (IOException e) {
