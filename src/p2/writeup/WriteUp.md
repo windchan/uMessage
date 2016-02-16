@@ -176,7 +176,7 @@ there a clear winner?  Why or why not?  Is the winner surprising to you?
 		N as in N-gram: 3
 		Memory usage allowed: 6G
 		Test: generalDictNGramTester.java
-		Input file: random\_dic\_large.txt, random\_dic\_small.txt, spoken.corpus
+		Input file: random\_dic\_large.txt, random\_dic\_small.txt, archive.txt, spoken.corpus
 	&nbsp;
 	In this experiment. we use generalDictNGramTester.java to test all 5 dictionaries(namely, HashTrieMap, AVL Tree, 
 	Standard BST, MTF list, ChaininghashTable) as outer and inner dictionaries for WordSuggestor. There are 25 
@@ -192,8 +192,12 @@ there a clear winner?  Why or why not?  Is the winner surprising to you?
 	the file size. We first test these 25 data structure combinations on random\_dic\_small.txt which has 5000
 	lies. The result is as follow:
 	&nbsp;
+	![alt tag](../../experiment/dataStructuresCompetetion.png)
 	&nbsp;
+	After the first experiment, we find that using ChainingHashTable and MTF list as outer map is a bad choice.
+	So we removed those combinations when using input files random\_dic\_large.txt. The second result is as follow:
 	![alt tag](../../experiment/dataStructuresCompetitionMid.png)
+	
 
 </pre>
 
