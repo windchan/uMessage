@@ -14,7 +14,7 @@ import p2.wordsuggestor.WordSuggestor;
 
 public class generalDictNGramTester {
     
-    public static final String FILE_NAME = "spoken.corpus";
+    public static final String FILE_NAME = "archive.txt";
 
     @SuppressWarnings({ "rawtypes", "unchecked" })
     public static <K, V> Supplier<Dictionary<K, V>> bstConstructor() {
@@ -43,8 +43,8 @@ public class generalDictNGramTester {
     public static void main(String[] args) {
         preload();
 
-//        trietrie();
-//        triehash();
+        trietrie();
+        triehash();
         trieavl();
         triebst();
         triemtf();
@@ -61,17 +61,17 @@ public class generalDictNGramTester {
 //        hashbst();
 //        hashmtf();
         
-//        bsttrie();
-//        bsthash();
-//        bstavl();
-//        bstbst();
-//        bstmtf();
-//        
-//        avltrie();
-//        avlhash();
-//        avlavl();
-//        avlbst();
-//        avlmtf();
+        bsttrie();
+        bsthash();
+        bstavl();
+        bstbst();
+        bstmtf();
+        
+        avltrie();
+        avlhash();
+        avlavl();
+        avlbst();
+        avlmtf();
    }
 
     
