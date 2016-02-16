@@ -1,16 +1,20 @@
 package experiment;
 
+import java.io.FileReader;
 import java.io.IOException;
 import java.util.function.Supplier;
 
 import cse332.interfaces.misc.BString;
 import cse332.interfaces.misc.Dictionary;
+import cse332.misc.WordReader;
 import cse332.types.AlphabeticString;
 import cse332.types.NGram;
 import datastructures.dictionaries.HashTrieMap;
 import p2.wordsuggestor.WordSuggestor;
 
 public class generalDictNGramTester {
+    
+    public static final String FILE_NAME = "random_dic_large.txt";
 
     @SuppressWarnings({ "rawtypes", "unchecked" })
     public static <K, V> Supplier<Dictionary<K, V>> bstConstructor() {
@@ -39,23 +43,23 @@ public class generalDictNGramTester {
     public static void main(String[] args) {
         preload();
 
-  /*      trietrie();
+        trietrie();
         triehash();
-        trieavl();*/
+        trieavl();
         triebst();
         triemtf();
         
-    /*    mtftrie();
+        mtftrie();
         mtfhash();
         mtfavl();
         mtfbst();
-        mtfmtf();*/
+        mtfmtf();
         
-    /*    hashtrie();
+        hashtrie();
         hashhash();
         hashavl();
         hashbst();
-        hashmtf();*/
+        hashmtf();
         
         bsttrie();
         bsthash();
@@ -70,33 +74,26 @@ public class generalDictNGramTester {
         avlmtf();
    }
 
-  /*  public static <A, K, V> void oneTest(Supplier<Dictionary<A, Dictionary<K, V>>> outer,
-            Supplier<Dictionary<K, V>> inner) {
-        try {
-            long startTime = System.currentTimeMillis();
-            WordSuggestor suggestions = new WordSuggestor("random_dic_large.txt", 3, -1, outer, inner);
-            // suggestions.toString();
-            long endTime = System.currentTimeMillis();
-            System.out.println((endTime - startTime));
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }*/
+    
+//    public static void preload() {
+//        String str;
+//        try {
+//            WordReader wr = new WordReader(new FileReader(FILE_NAME));
+//            while (wr.hasNext()) {
+//                str = wr.next();
+//            }
+//            wr.close();
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
+//    }
     
     public static void preload() {
         try {
-//            long startTime = System.currentTimeMillis();
-            WordSuggestor suggestions1 = new WordSuggestor("spoken.corpus", 3, -1,
+            WordSuggestor suggestions = new WordSuggestor(FILE_NAME, 3, -1,
                     trieConstructor(NGram.class),
                     mtfListConstructor());
-            WordSuggestor suggestions = new WordSuggestor("spoken.corpus", 3, -1,
-                    trieConstructor(NGram.class),
-                    bstConstructor());
-            
-            // suggestions.toString();
-//            long endTime = System.currentTimeMillis();
-            System.out.println("preload finished");
-            
+            System.out.println("Preload finish");
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -106,7 +103,7 @@ public class generalDictNGramTester {
     public static void trietrie() {
         try {
             long startTime = System.currentTimeMillis();
-            WordSuggestor suggestions = new WordSuggestor("random_dic_large.txt", 3, -1,
+            WordSuggestor suggestions = new WordSuggestor(FILE_NAME, 3, -1,
                     trieConstructor(NGram.class),
                     trieConstructor(AlphabeticString.class));
             // suggestions.toString();
@@ -120,7 +117,7 @@ public class generalDictNGramTester {
     public static void triehash() {
         try {
             long startTime = System.currentTimeMillis();
-            WordSuggestor suggestions = new WordSuggestor("random_dic_large.txt", 3, -1,
+            WordSuggestor suggestions = new WordSuggestor(FILE_NAME, 3, -1,
                     trieConstructor(NGram.class),
                     hashtableConstructor(mtfListConstructor()));
             // suggestions.toString();
@@ -134,7 +131,7 @@ public class generalDictNGramTester {
     public static void triemtf() {
         try {
             long startTime = System.currentTimeMillis();
-            WordSuggestor suggestions = new WordSuggestor("spoken.corpus", 3, -1,
+            WordSuggestor suggestions = new WordSuggestor(FILE_NAME, 3, -1,
                     trieConstructor(NGram.class),
                     mtfListConstructor());
             // suggestions.toString();
@@ -148,7 +145,7 @@ public class generalDictNGramTester {
     public static void trieavl() {
         try {
             long startTime = System.currentTimeMillis();
-            WordSuggestor suggestions = new WordSuggestor("random_dic_large.txt", 3, -1,
+            WordSuggestor suggestions = new WordSuggestor(FILE_NAME, 3, -1,
                     trieConstructor(NGram.class),
                     avlConstructor());
             // suggestions.toString();
@@ -162,7 +159,7 @@ public class generalDictNGramTester {
     public static void triebst() {
         try {
             long startTime = System.currentTimeMillis();
-            WordSuggestor suggestions = new WordSuggestor("spoken.corpus", 3, -1,
+            WordSuggestor suggestions = new WordSuggestor(FILE_NAME, 3, -1,
                     trieConstructor(NGram.class),
                     bstConstructor());
             // suggestions.toString();
@@ -176,7 +173,7 @@ public class generalDictNGramTester {
     public static void mtftrie() {
         try {
             long startTime = System.currentTimeMillis();
-            WordSuggestor suggestions = new WordSuggestor("random_dic_large.txt", 3, -1,
+            WordSuggestor suggestions = new WordSuggestor(FILE_NAME, 3, -1,
                     mtfListConstructor(),
                     trieConstructor(AlphabeticString.class));
             // suggestions.toString();
@@ -190,7 +187,7 @@ public class generalDictNGramTester {
     public static void mtfmtf() {
         try {
             long startTime = System.currentTimeMillis();
-            WordSuggestor suggestions = new WordSuggestor("random_dic_large.txt", 3, -1,
+            WordSuggestor suggestions = new WordSuggestor(FILE_NAME, 3, -1,
                     mtfListConstructor(),
                     mtfListConstructor());
             // suggestions.toString();
@@ -204,7 +201,7 @@ public class generalDictNGramTester {
     public static void mtfavl() {
         try {
             long startTime = System.currentTimeMillis();
-            WordSuggestor suggestions = new WordSuggestor("random_dic_large.txt", 3, -1,
+            WordSuggestor suggestions = new WordSuggestor(FILE_NAME, 3, -1,
                     mtfListConstructor(),
                     avlConstructor());
             // suggestions.toString();
@@ -218,7 +215,7 @@ public class generalDictNGramTester {
     public static void mtfbst() {
         try {
             long startTime = System.currentTimeMillis();
-            WordSuggestor suggestions = new WordSuggestor("random_dic_large.txt", 3, -1,
+            WordSuggestor suggestions = new WordSuggestor(FILE_NAME, 3, -1,
                     mtfListConstructor(),
                     bstConstructor());
             // suggestions.toString();
@@ -232,7 +229,7 @@ public class generalDictNGramTester {
     public static void mtfhash() {
         try {
             long startTime = System.currentTimeMillis();
-            WordSuggestor suggestions = new WordSuggestor("random_dic_large.txt", 3, -1,
+            WordSuggestor suggestions = new WordSuggestor(FILE_NAME, 3, -1,
                     mtfListConstructor(),
                     hashtableConstructor(mtfListConstructor()));
             // suggestions.toString();
@@ -246,7 +243,7 @@ public class generalDictNGramTester {
     public static void hashhash() {
         try {
             long startTime = System.currentTimeMillis();
-            WordSuggestor suggestions = new WordSuggestor("random_dic_large.txt", 3, -1,
+            WordSuggestor suggestions = new WordSuggestor(FILE_NAME, 3, -1,
                     hashtableConstructor(mtfListConstructor()),
                     hashtableConstructor(mtfListConstructor()));
             // suggestions.toString();
@@ -260,7 +257,7 @@ public class generalDictNGramTester {
     public static void hashtrie() {
         try {
             long startTime = System.currentTimeMillis();
-            WordSuggestor suggestions = new WordSuggestor("random_dic_large.txt", 3, -1,
+            WordSuggestor suggestions = new WordSuggestor(FILE_NAME, 3, -1,
                     hashtableConstructor(mtfListConstructor()),
                     trieConstructor(AlphabeticString.class));
             // suggestions.toString();
@@ -274,7 +271,7 @@ public class generalDictNGramTester {
     public static void hashavl() {
         try {
             long startTime = System.currentTimeMillis();
-            WordSuggestor suggestions = new WordSuggestor("random_dic_large.txt", 3, -1,
+            WordSuggestor suggestions = new WordSuggestor(FILE_NAME, 3, -1,
                     hashtableConstructor(mtfListConstructor()),
                     avlConstructor());
             // suggestions.toString();
@@ -288,7 +285,7 @@ public class generalDictNGramTester {
     public static void hashbst() {
         try {
             long startTime = System.currentTimeMillis();
-            WordSuggestor suggestions = new WordSuggestor("random_dic_large.txt", 3, -1,
+            WordSuggestor suggestions = new WordSuggestor(FILE_NAME, 3, -1,
                     hashtableConstructor(mtfListConstructor()),
                     bstConstructor());
             // suggestions.toString();
@@ -302,7 +299,7 @@ public class generalDictNGramTester {
     public static void hashmtf() {
         try {
             long startTime = System.currentTimeMillis();
-            WordSuggestor suggestions = new WordSuggestor("random_dic_large.txt", 3, -1,
+            WordSuggestor suggestions = new WordSuggestor(FILE_NAME, 3, -1,
                     hashtableConstructor(mtfListConstructor()),
                     mtfListConstructor());
             // suggestions.toString();
@@ -316,7 +313,7 @@ public class generalDictNGramTester {
     public static void bstbst() {
         try {
             long startTime = System.currentTimeMillis();
-            WordSuggestor suggestions = new WordSuggestor("random_dic_large.txt", 3, -1,
+            WordSuggestor suggestions = new WordSuggestor(FILE_NAME, 3, -1,
                     bstConstructor(),
                     bstConstructor());
             // suggestions.toString();
@@ -330,7 +327,7 @@ public class generalDictNGramTester {
     public static void bsttrie() {
         try {
             long startTime = System.currentTimeMillis();
-            WordSuggestor suggestions = new WordSuggestor("random_dic_large.txt", 3, -1,
+            WordSuggestor suggestions = new WordSuggestor(FILE_NAME, 3, -1,
                     bstConstructor(),
                     trieConstructor(AlphabeticString.class));
             // suggestions.toString();
@@ -344,7 +341,7 @@ public class generalDictNGramTester {
     public static void bstavl() {
         try {
             long startTime = System.currentTimeMillis();
-            WordSuggestor suggestions = new WordSuggestor("random_dic_large.txt", 3, -1,
+            WordSuggestor suggestions = new WordSuggestor(FILE_NAME, 3, -1,
                     bstConstructor(),
                     avlConstructor());
             // suggestions.toString();
@@ -358,7 +355,7 @@ public class generalDictNGramTester {
     public static void bstmtf() {
         try {
             long startTime = System.currentTimeMillis();
-            WordSuggestor suggestions = new WordSuggestor("random_dic_large.txt", 3, -1,
+            WordSuggestor suggestions = new WordSuggestor(FILE_NAME, 3, -1,
                     bstConstructor(),
                     mtfListConstructor());
             // suggestions.toString();
@@ -372,7 +369,7 @@ public class generalDictNGramTester {
     public static void bsthash() {
         try {
             long startTime = System.currentTimeMillis();
-            WordSuggestor suggestions = new WordSuggestor("random_dic_large.txt", 3, -1,
+            WordSuggestor suggestions = new WordSuggestor(FILE_NAME, 3, -1,
                     bstConstructor(),
                     hashtableConstructor(mtfListConstructor()));
             // suggestions.toString();
@@ -386,7 +383,7 @@ public class generalDictNGramTester {
     public static void avltrie() {
         try {
             long startTime = System.currentTimeMillis();
-            WordSuggestor suggestions = new WordSuggestor("random_dic_large.txt", 3, -1,
+            WordSuggestor suggestions = new WordSuggestor(FILE_NAME, 3, -1,
                     avlConstructor(),
                     trieConstructor(AlphabeticString.class));
             // suggestions.toString();
@@ -400,7 +397,7 @@ public class generalDictNGramTester {
     public static void avlavl() {
         try {
             long startTime = System.currentTimeMillis();
-            WordSuggestor suggestions = new WordSuggestor("random_dic_large.txt", 3, -1,
+            WordSuggestor suggestions = new WordSuggestor(FILE_NAME, 3, -1,
                     avlConstructor(),
                     avlConstructor());
             // suggestions.toString();
@@ -414,7 +411,7 @@ public class generalDictNGramTester {
     public static void avlhash() {
         try {
             long startTime = System.currentTimeMillis();
-            WordSuggestor suggestions = new WordSuggestor("random_dic_large.txt", 3, -1,
+            WordSuggestor suggestions = new WordSuggestor(FILE_NAME, 3, -1,
                     avlConstructor(),
                     hashtableConstructor(mtfListConstructor()));
             // suggestions.toString();
@@ -428,7 +425,7 @@ public class generalDictNGramTester {
     public static void avlbst() {
         try {
             long startTime = System.currentTimeMillis();
-            WordSuggestor suggestions = new WordSuggestor("random_dic_large.txt", 3, -1,
+            WordSuggestor suggestions = new WordSuggestor(FILE_NAME, 3, -1,
                     avlConstructor(),
                     bstConstructor());
             // suggestions.toString();
@@ -442,7 +439,7 @@ public class generalDictNGramTester {
     public static void avlmtf() {
         try {
             long startTime = System.currentTimeMillis();
-            WordSuggestor suggestions = new WordSuggestor("random_dic_large.txt", 3, -1,
+            WordSuggestor suggestions = new WordSuggestor(FILE_NAME, 3, -1,
                     avlConstructor(),
                     mtfListConstructor());
             // suggestions.toString();
