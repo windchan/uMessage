@@ -14,7 +14,7 @@ import p2.wordsuggestor.WordSuggestor;
 
 public class generalDictNGramTester {
     
-    public static final String FILE_NAME = "random_dic_large.txt";
+    public static final String FILE_NAME = "spoken.corpus";
 
     @SuppressWarnings({ "rawtypes", "unchecked" })
     public static <K, V> Supplier<Dictionary<K, V>> bstConstructor() {
@@ -43,8 +43,8 @@ public class generalDictNGramTester {
     public static void main(String[] args) {
         preload();
 
-        trietrie();
-        triehash();
+//        trietrie();
+//        triehash();
         trieavl();
         triebst();
         triemtf();
@@ -61,17 +61,17 @@ public class generalDictNGramTester {
 //        hashbst();
 //        hashmtf();
         
-        bsttrie();
-        bsthash();
-        bstavl();
-        bstbst();
-        bstmtf();
-        
-        avltrie();
-        avlhash();
-        avlavl();
-        avlbst();
-        avlmtf();
+//        bsttrie();
+//        bsthash();
+//        bstavl();
+//        bstbst();
+//        bstmtf();
+//        
+//        avltrie();
+//        avlhash();
+//        avlavl();
+//        avlbst();
+//        avlmtf();
    }
 
     
@@ -116,6 +116,7 @@ public class generalDictNGramTester {
     
     public static void triehash() {
         try {
+            
             long startTime = System.currentTimeMillis();
             WordSuggestor suggestions = new WordSuggestor(FILE_NAME, 3, -1,
                     trieConstructor(NGram.class),
