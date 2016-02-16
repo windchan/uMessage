@@ -198,6 +198,16 @@ there a clear winner?  Why or why not?  Is the winner surprising to you?
 	So we removed those combinations when using input files archive.txt. The second result is as follow:
 	&nbsp;
 	![alt tag](../../experiment/dataStructuresCompetitionMid.png)
+	&nbsp; 
+	From the second round, we find that using trie_avl, trie_bst, trie_mtf has the best performance overall. So
+	we keep comparing them using spoken.corpus to see which one is the best for uMessage:
+	&nbsp;
+	![alt tag](../../experiment/final_round_data.png)
+	&nbsp;
+	We finally find that using trie as the outer map, and MTF list as the inner map is the best choice. 
+	Trie\_avl and Trie\_bst has a slightly worse performance than trie_mtf. The winner surprises us since we
+	did not expect MTF list has such a good performance.
+	
 	
 
 </pre>
