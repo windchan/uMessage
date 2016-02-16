@@ -284,7 +284,11 @@ Use uMessage to test out your implementations.  Using N=3, uMessage should take 
 your best algorithms and data structures on a reasonable machine.
 
  -  How are the suggestions uMessage gives with the default corpus?
-    <pre>TODO</pre>
+    <pre>
+		The suggestions the default corpus gives do not make any sence they are crap
+
+
+	</pre>
 
  - Now, switch uMessage to use a corpus of YOUR OWN text. To do this, you will need a corpus. 
    You can use anything you like (Facebook, google talk, e-mails, etc.)  We provide
