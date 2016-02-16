@@ -143,13 +143,9 @@ hash function make?  (You should keep all other inputs (e.g., the chain type) co
 		Memory usage allowed: 6G
 		Input file: random\_dic\_large.txt, spoken.corpus
 	&nbsp;
-	In this experiment, we change the inserting index from 
+	In this experiment, we change the hashcode function in CircularArrayFIFOQueue from the original to
 	&nbsp;
-		int index = Math.abs(key.hashcode() % table.length);
-	&nbsp;
-	to
-	&nbsp;
-		int index = 1;
+		int index = 5;
 	&nbsp;
 	so that all elements will be added into one slot in a chaininghashtable
 	&nbsp;
@@ -178,13 +174,31 @@ sorts using *step counting*. That is, for all other experiments, you likely comp
 things to run, but for this one, we want you to (1) choose a definition of step, (2) modify the sorting algorithms to
 calculate the number of steps, and (3) compare the results.  In this case, there is a "good" definition of step, and
 there are many bad ones.  We expect you to justify your choice.
-<pre>TODO</pre>
+<pre>
+	Experiment constants:
+		running machine: CSE lab linux machine
+		N as in N-gram: 2
+		Input file: sorted\_dic\_large.txt
+		SIZE
+	&nbsp;
+	In this experiment we use sortExperiment.java to test several general purpose sorts, for each sort, we 
+	fix the SIZE(the amount of integers to sort) to compare these sorts under the same condition.
+	&nbsp;
+	Data:
+	&nbsp;
+	![alt tag](../../experiment/generalSort.png)
+
+</pre>
 
 ### Top K Sort ###
 TopKSort should theoretically be better for small values of k.  Determine (using timing or step-counting--your choice)
 which n (input size) and k (number of elements sorted) makes TopKSort worthwhile over your best sort from the previous
 experiment. 
-<pre>TODO</pre>
+<pre>
+	
+
+
+</pre>
 
 ### uMessage ###
 Use uMessage to test out your implementations.  Using N=3, uMessage should take less than a minute to load using

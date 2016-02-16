@@ -19,7 +19,6 @@ public class QuickSort {
         if(lo < hi) {
             int steps = 0;
             int i = findMedian(array, lo, hi - 1, lo + (hi - 1 - lo) / 2, comparator);
-            steps++;
             int front = lo + 1;
             int end = hi;
             swap(array, lo, i);
