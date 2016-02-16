@@ -171,8 +171,26 @@ hash function make?  (You should keep all other inputs (e.g., the chain type) co
 Compare all of the dictionaries (on their best settings, as determined above) on several large input files.  Is
 there a clear winner?  Why or why not?  Is the winner surprising to you?
 <pre>
-	![alt tag](../../experiment/dataStructuresCompetition.png)
+	Experiment constants:
+		running machine: CSE lab windows machine
+		N as in N-gram: 3
+		Memory usage allowed: 6G
+		Test: generalDictNGramTester.java
+		Input file: random\_dic\_large.txt, random\_dic\_small.txt, spoken.corpus
 	&nbsp;
+	In this experiment. we use generalDictNGramTester.java to test all 5 dictionaries(namely, HashTrieMap, AVL Tree, 
+	Standard BST, MTF list, ChaininghashTable) as outer and inner dictionaries for WordSuggestor. There are 25 
+	combinations of data structures in total, so we test all of them. 
+	&nbsp;
+	Before each test, we find that a preload function is needed so that the first test will have relatively equal
+	performance compared to other tests. Here is our preload function.
+	&nbsp;
+	![alt tag](../../experiment/preload.png)
+	The reason this preload is needed is probably because the file needs to be first loaded into cache.
+	&nbsp;
+	We have three input files: random\_dic\_small.txt, random\_dic\_large.txt and spoken.corpus, ranked by
+	the file size. We first test these 25 data structure combinations on random\_dic\_small.txt which has 5000
+	lies. The result is as follow:
 	&nbsp;
 	&nbsp;
 	![alt tag](../../experiment/dataStructuresCompetitionMid.png)
