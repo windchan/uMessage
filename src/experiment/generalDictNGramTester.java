@@ -49,17 +49,17 @@ public class generalDictNGramTester {
         triebst();
         triemtf();
         
-        mtftrie();
-        mtfhash();
-        mtfavl();
-        mtfbst();
-        mtfmtf();
+//        mtftrie();
+//        mtfhash();
+//        mtfavl();
+//        mtfbst();
+//        mtfmtf();
         
-        hashtrie();
-        hashhash();
-        hashavl();
-        hashbst();
-        hashmtf();
+//        hashtrie();
+//        hashhash();
+//        hashavl();
+//        hashbst();
+//        hashmtf();
         
         bsttrie();
         bsthash();
