@@ -9,6 +9,7 @@ import cse332.types.AlphabeticString;
 import cse332.types.NGram;
 import datastructures.dictionaries.ChainingHashTable;
 import datastructures.dictionaries.HashTrieMap;
+import experiment.MoveToFrontList;
 import p2.wordsuggestor.WordSuggestor;
 
 public class NGramTester {
@@ -20,10 +21,14 @@ public class NGramTester {
             Supplier<Dictionary<K, V>> constructor) {
         return () -> new ChainingHashTable<K, V>(constructor);
     }
-
+    
+    public static <K, V> Supplier<Dictionary<K, V>> mtfListConstructor() {
+        return () -> new MoveToFrontList<K, V>();
+    }
+    
     public static void main(String[] args) {
         try {
-            WordSuggestor suggestions = new WordSuggestor("", 2, -1,
+            WordSuggestor suggestions = new WordSuggestor("spoken.corpus", 2, -1,
                     NGramTester.trieConstructor(NGram.class),
                     NGramTester.trieConstructor(AlphabeticString.class));
             System.out.println(suggestions);

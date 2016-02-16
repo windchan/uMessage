@@ -20,6 +20,7 @@ import javax.swing.JTextField;
 import cse332.interfaces.misc.Dictionary;
 import cse332.types.AlphabeticString;
 import cse332.types.NGram;
+import experiment.MoveToFrontList;
 import p2.clients.NGramTester;
 import p2.wordsuggestor.WordSuggestor;
 
@@ -29,7 +30,7 @@ public class uMessage {
     private static Supplier<Dictionary<NGram, Dictionary<AlphabeticString, Integer>>> NEW_OUTER = NGramTester
             .trieConstructor(NGram.class);
     private static Supplier<Dictionary<AlphabeticString, Integer>> NEW_INNER = NGramTester
-            .trieConstructor(AlphabeticString.class);
+            .mtfListConstructor();
 
     /*
      *
