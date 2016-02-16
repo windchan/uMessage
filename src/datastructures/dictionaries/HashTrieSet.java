@@ -1,6 +1,5 @@
 package datastructures.dictionaries;
 
-import cse332.exceptions.NotYetImplementedException;
 import cse332.interfaces.misc.BString;
 import cse332.interfaces.trie.TrieSet;
 import datastructures.dictionaries.HashTrieMap;

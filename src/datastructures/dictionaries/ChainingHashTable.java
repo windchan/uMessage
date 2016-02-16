@@ -4,7 +4,6 @@ import java.util.Iterator;
 import java.util.function.Supplier;
 
 import cse332.datastructures.containers.*;
-import cse332.exceptions.NotYetImplementedException;
 import cse332.interfaces.misc.DeletelessDictionary;
 import cse332.interfaces.misc.Dictionary;
 import cse332.interfaces.misc.SimpleIterator;
@@ -84,7 +83,6 @@ public class ChainingHashTable<K, V> extends DeletelessDictionary<K, V> {
 
         @Override
         public boolean hasNext() {
-            // TODO Auto-generated method stub
             return !(list.size() == 0);
         }
         
@@ -102,6 +100,7 @@ public class ChainingHashTable<K, V> extends DeletelessDictionary<K, V> {
         
     }
     private void rehash() {
+        @SuppressWarnings("unchecked")
         Dictionary<K, V>[] newTable = new Dictionary[PRIMES[primeIndex]];
         for (Item<K, V> it : this) {
             int index = Math.abs(it.key.hashCode() % newTable.length);

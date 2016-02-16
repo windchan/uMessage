@@ -1,15 +1,12 @@
 package datastructures.dictionaries;
 
-import java.util.HashMap;
 import java.util.Iterator;
-import java.util.Map;
 import java.util.Map.Entry;
 import java.util.function.Supplier;
 import java.util.AbstractMap.SimpleEntry;
 
 
 import cse332.datastructures.containers.Item;
-import cse332.exceptions.NotYetImplementedException;
 import cse332.interfaces.misc.BString;
 import cse332.interfaces.misc.Dictionary;
 import cse332.interfaces.trie.TrieMap;
@@ -28,12 +25,14 @@ public class HashTrieMap<A extends Comparable<A>, K extends BString<A>, V> exten
             this(null);
         }
 
+        @SuppressWarnings({ "unchecked", "rawtypes" })
         public HashTrieNode(V value) {
             Supplier<Dictionary<A, HashTrieNode>> newChain = () -> new MoveToFrontList();
             this.pointers = new ChainingHashTable(newChain);
             this.value = value;
         }
 
+        @SuppressWarnings({ "rawtypes", "unchecked" })
         @Override
         public Iterator<Entry<A, HashTrieMap<A, K, V>.HashTrieNode>> iterator() {
             WorkList<Entry<A, HashTrieNode>> list = new ListFIFOQueue<Entry<A, HashTrieNode>>();

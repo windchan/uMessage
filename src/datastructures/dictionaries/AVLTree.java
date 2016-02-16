@@ -1,7 +1,6 @@
 package datastructures.dictionaries;
 
 import cse332.datastructures.trees.BinarySearchTree;
-import cse332.datastructures.trees.BinarySearchTree.BSTNode;
 
 /**
  * TODO: Replace this comment with your own as appropriate.
@@ -43,6 +42,7 @@ public class AVLTree<K extends Comparable<K>, V> extends BinarySearchTree<K, V> 
             this.height = height;
         }
 
+        @SuppressWarnings("unchecked")
         public AVLNode getAVLChildren(int child) {
             return (AVLNode) children[child];
         }
@@ -53,6 +53,7 @@ public class AVLTree<K extends Comparable<K>, V> extends BinarySearchTree<K, V> 
         super();
     }
 
+    @SuppressWarnings("unchecked")
     @Override
     public V insert(K key, V value) {
         if (key == null || value == null) {
@@ -76,7 +77,6 @@ public class AVLTree<K extends Comparable<K>, V> extends BinarySearchTree<K, V> 
                 // This is the situation where we modify the structure of the
                 // tree.
                 int child = Integer.signum(direction + 1);
-                AVLNode ret;
                 if (current.getAVLChildren(child) != null) {
                     current.children[child] = insert(current.getAVLChildren(child), key, value);
                 } else {
@@ -110,7 +110,6 @@ public class AVLTree<K extends Comparable<K>, V> extends BinarySearchTree<K, V> 
         }
     }
 
-    @SuppressWarnings("unchecked")
     private AVLNode rotate(AVLNode parent, int childIndex) {
         int oppositeIndex = 1 - childIndex;
         AVLNode temp = parent.getAVLChildren(childIndex);
@@ -120,10 +119,6 @@ public class AVLTree<K extends Comparable<K>, V> extends BinarySearchTree<K, V> 
 
         updateHeight(parent);
         updateHeight(temp);
-
-//        if (this.root == parent) {
-//            this.root = temp;
-//        }
         return temp;
     }
 
