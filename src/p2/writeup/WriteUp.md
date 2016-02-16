@@ -300,7 +300,8 @@ your best algorithms and data structures on a reasonable machine.
  
  - How are the suggestions uMessage gives with the new corpus?
    <pre>
-		the suggestion uMessage gives with the new corpus makes a better sense than the previous default corpus.
+		the suggestion uMessage gives with the new corpus makes a better sense than the previous default corpus. 
+		It provides some frequent words that makes a normal conversation.
 </pre>
 
 
