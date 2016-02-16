@@ -1,7 +1,6 @@
 package experiment;
 
 import java.util.Comparator;
-import datastructures.worklists.MinFourHeap;
 
 public class TopKSort {
     public static <E extends Comparable<E>> int sort(E[] array, int k) {
@@ -37,6 +36,6 @@ public class TopKSort {
                 steps++;
             }
         }   
-        return steps;
+        return heap.step;
     }
 }

@@ -1,7 +1,7 @@
 package experiment;
 
 import java.util.Comparator;
-import datastructures.worklists.MinFourHeap;
+
 
 public class HeapSort {
     public static <E extends Comparable<E>> int  sort(E[] array) {
@@ -13,13 +13,13 @@ public class HeapSort {
         int step = 0;
         for(int i = 0; i < array.length; i++) {
             heap.add(array[i]);
-            step += Math.ceil(log4(heap.size()));
+            //step += Math.ceil(log4(heap.size()));
         }
         for(int i = 0; i < array.length; i++) {
-            step += Math.ceil(log4(heap.size()));
+            //step += Math.ceil(log4(heap.size()));
             array[i] = heap.next();
         }
-        return step;
+        return heap.step;
     }
     
     public static double log4(int n) {

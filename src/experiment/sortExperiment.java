@@ -4,9 +4,9 @@ import java.util.Random;
 
 public class sortExperiment {
 
-    private static final int SIZE = 10000;
+    private static final int SIZE = 40000;
     private static final Random rand = new Random();
-    private static final int K = 50000;
+    private static final int K = 1000;
     
     public static void main(String[] args) {
         
@@ -34,5 +34,4 @@ public class sortExperiment {
         }
         System.out.println("insertion sort steps: " + InsertionSort.sort(nums));
     }
-
 }
