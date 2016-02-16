@@ -265,9 +265,18 @@ TopKSort should theoretically be better for small values of k.  Determine (using
 which n (input size) and k (number of elements sorted) makes TopKSort worthwhile over your best sort from the previous
 experiment. 
 <pre>
-	
-
-
+	Experiment constants:
+		running machine: CSE lab windows machine
+		Test: TopK_vs_quickSort.java
+	&nbsp;
+	In this experiment, we initialize the n to be 100000 and k to be 50000, we run 10 tests, each time increment n with
+	10000 and k with 500, so that the ratio of k to n decreases each time. Here is our data:
+	&nbsp;
+	![alt tag](../../experiment/topK_quick.png)
+	&nbsp;
+	in which x-axis represents the ratio, and y-axis represents the steps.
+	We find that when the ratio is less than 0.31, topKsort is better than quicksort. Otherwise quicksort has few steps
+	than topKsort. This conclusion consists with the theoretical assumption.
 </pre>
 
 ### uMessage ###
@@ -276,9 +285,7 @@ your best algorithms and data structures on a reasonable machine.
 
  -  How are the suggestions uMessage gives with the default corpus?
     <pre>
-		The suggestions the default corpus gives do not make any sence they are crap
-
-
+		The suggestions the default corpus gives do not make any sense and they are kind of crap.
 	</pre>
 
  - Now, switch uMessage to use a corpus of YOUR OWN text. To do this, you will need a corpus. 
@@ -291,8 +298,10 @@ your best algorithms and data structures on a reasonable machine.
      * Run the ParseFBMessages program in the main package.
      * Use the output file "me.txt" as the corpus for uMessage.
  
- - How are the suggestions uMessage gives wth the new corpus?
-   <pre>TODO</pre>
+ - How are the suggestions uMessage gives with the new corpus?
+   <pre>
+		the suggestion uMessage gives with the new corpus makes a better sense than the previous default corpus.
+</pre>
 
 
 -----
