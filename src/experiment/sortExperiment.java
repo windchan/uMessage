@@ -4,9 +4,9 @@ import java.util.Random;
 
 public class sortExperiment {
 
-    private static final int SIZE = 40000;
+    private static final int SIZE = 200000;
     private static final Random rand = new Random();
-    private static final int K = 1000;
+    private static final int K = 50000;
     
     public static void main(String[] args) {
         

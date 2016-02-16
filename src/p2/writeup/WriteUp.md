@@ -231,17 +231,8 @@ there are many bad ones.  We expect you to justify your choice.
 	&nbsp;
 	we define steps to be the number of comparisons.
 	&nbsp;
-	For heapsort, we have the following code to calculate steps:
-	&nbsp;
-	![alt tag](../../experiment/stepCountInHeapSort.png)
-	&nbsp;
-	in the first for each loop, after adding an element into a heap, the average number of steps should add log4(n) 
-	because it is a minfourheap and has a height of log4(n), for each height we need one comparison to percolate up.
-	&nbsp;
-	In the second for each loop, after removing min from the heap, the average number of steps should also add
-	log4(n) after approximate careful calculation(namely, the ratio of the amount of non leaves and the amount of 
-	leaves is 3:1, and non leaves take four comparison each time, leaves take no comparison each time, so
-	(3 * 0 + 1 * 4) / 4 = 1, so average number of 1 comparison for each level.)
+	For heapSort and topKsort, we modified minFourHeap.java such that it has a public field called step which increment
+	by 1 when there is a comparison.
 	&nbsp;
 	For Quicksort, we have the following code:
 	&nbsp;
@@ -261,10 +252,10 @@ there are many bad ones.  We expect you to justify your choice.
 	![alt tag](../../experiment/generalSort.png)
 	&nbsp;
 	from the data, we reach the several conclusions:
-	1)heapsort is the fastest according our definition of steps.
+	1)quicksort is the fastest general purpose sort according our definition of steps.
 	2)steps of heapsort and quicksort increase within the bound nlogn, which satisfies the theoretical bound O(nlogn),
-	and stesp of insertion sort increase within the bound n^2, which satisfies the theoretical bound O(n^2).
-	3)topKsort is faster than heapsort when k < n ,and equivilant to heapsort when k = n.
+	and steps of insertion sort increase within the bound n^2, which satisfies the theoretical bound O(n^2).
+	3)topKsort is faster than heapsort when k < n ,and approximately equivalent to heapsort when k = n.
 	
 
 </pre>
